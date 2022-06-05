@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="cjfw" ng-controller="indexCtrl">
 
 <head>
     <meta charset="utf-8">
@@ -14,6 +14,14 @@
     <link rel="stylesheet" href="plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
+    <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
+
+
+    <script src="./dist/js/angular.js"></script>
+    <script src="./dist/js/angular-route.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
+    <script src="./app.js"></script>
+    <script src="./index.js"></script>
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -182,7 +190,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="#/" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Dashboard
@@ -192,7 +200,7 @@
                         </li>
                         <li class="nav-header">Modules</li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#storage" class="nav-link">
                                 <i class="nav-icon fas fa-warehouse text-orange"></i>
 
                                 <p class="text">Storage Entry</p>
@@ -200,7 +208,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#tag" class="nav-link">
                                 <i class="nav-icon fas fa-tags text-purple"></i>
 
                                 <p class="text">Tags Entry</p>
@@ -208,7 +216,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-database text-red"></i>
                                 <p>
                                     Database Entry
@@ -217,13 +225,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="#material" class="nav-link">
                                         <i class="nav-icon fas fa-solid fa-table text-blue"></i>
                                         <p>Materials</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="#billsoflading" class="nav-link">
                                         <i class="nav-icon fas fa-solid fa-file-invoice-dollar text-green"></i>
                                         <!-- <i class="fa-solid fa-file-invoice-dollar"></i> -->
                                         <p>Bills of Lading</p>
@@ -238,7 +246,7 @@
 
 
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="#shelf" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-boxes text-lightblue"></i>
                                 <p>
                                     Shelf
@@ -270,208 +278,8 @@
         </aside>
 
         <!-- Content Wrapper. Contains page content -->
-        <div class="content-wrapper">
-            <!-- Content Header (Page header) -->
-            <div class="content-header">
-                <div class="container-fluid">
-                    <div class="row mb-2">
-                        <div class="col-sm-6">
-                            <h1 class="m-0">Insight</h1>
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-sm-6">
-                            <ol class="breadcrumb float-sm-right">
-                                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                                <li class="breadcrumb-item active">Dashboard v2</li>
-                            </ol>
-                        </div>
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /.content-header -->
+        <div ng-view class="page-content-wrap">
 
-            <!-- Main content -->
-            <section class="content">
-                <div class="container-fluid">
-                    <!-- Info boxes -->
-                    <div class="row">
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box">
-                                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-house-user"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">STORAGE</span>
-                                    <span class="info-box-number">1,200</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-tags"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">TAGS</span>
-                                    <span class="info-box-number">41,410</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-
-                        <!-- fix for small devices only -->
-                        <div class="clearfix hidden-md-up"></div>
-
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-database"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">DATABASE</span>
-                                    <span class="info-box-number">760</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-                        <div class="col-12 col-sm-6 col-md-3">
-                            <div class="info-box mb-3">
-                                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-boxes"></i></span>
-
-                                <div class="info-box-content">
-                                    <span class="info-box-text">SHELF</span>
-                                    <span class="info-box-number">2,000</span>
-                                </div>
-                                <!-- /.info-box-content -->
-                            </div>
-                            <!-- /.info-box -->
-                        </div>
-                        <!-- /.col -->
-                    </div>
-
-
-                    <!-- Main row -->
-                    <div class="row">
-                        <!-- Left col -->
-                        <div class="col-md-12">
-                            <!-- MAP & BOX PANE -->
-
-
-
-                            <!-- TABLE: LATEST ORDERS -->
-                            <div class="card">
-                                <div class="card-header border-transparent">
-                                    <h3 class="card-title">Latest Orders</h3>
-
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                                        <button type="button" class="btn btn-tool" data-card-widget="remove">
-                    <i class="fas fa-times"></i>
-                  </button>
-                                    </div>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body p-0">
-                                    <div class="table-responsive">
-                                        <table class="table m-0">
-                                            <thead>
-                                                <tr>
-                                                    <th>Order ID</th>
-                                                    <th>Item</th>
-                                                    <th>Status</th>
-                                                    <th>Popularity</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                    <td>Call of Duty IV</td>
-                                                    <td><span class="badge badge-success">Shipped</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                    <td>Samsung Smart TV</td>
-                                                    <td><span class="badge badge-warning">Pending</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                    <td>iPhone 6 Plus</td>
-                                                    <td><span class="badge badge-danger">Delivered</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                    <td>Samsung Smart TV</td>
-                                                    <td><span class="badge badge-info">Processing</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                                    <td>Samsung Smart TV</td>
-                                                    <td><span class="badge badge-warning">Pending</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                                    <td>iPhone 6 Plus</td>
-                                                    <td><span class="badge badge-danger">Delivered</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                                    <td>Call of Duty IV</td>
-                                                    <td><span class="badge badge-success">Shipped</span></td>
-                                                    <td>
-                                                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <!-- /.table-responsive -->
-                                </div>
-                                <!-- /.card-body -->
-                                <div class="card-footer clearfix">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
-                                </div>
-                                <!-- /.card-footer -->
-                            </div>
-                            <!-- /.card -->
-                        </div>
-                        <!-- /.col -->
-
-
-                        <!-- /.col -->
-                    </div>
-                    <!-- /.row -->
-                </div>
-                <!--/. container-fluid -->
-            </section>
-            <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
 
@@ -507,6 +315,7 @@
     <script src="plugins/raphael/raphael.min.js"></script>
     <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
     <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+
     <!-- ChartJS -->
     <script src="plugins/chart.js/Chart.min.js"></script>
 
@@ -514,6 +323,15 @@
     <script src="dist/js/demo.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
     <script src="dist/js/pages/dashboard2.js"></script>
+
+
+
+    <script src="./dist/js/jquery.tabletojson.min.js"></script>
+    <script src="./controller/dashboardCrtl.js"></script>
+    <script src='./dist/js/dirPagination.js'></script>
+    <script src='./controller/storageCtrl.js'></script>
+    <script src='./controller/tagCtrl.js'></script>
+
 </body>
 
 </html>
