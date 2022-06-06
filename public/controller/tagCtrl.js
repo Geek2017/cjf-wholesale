@@ -48,9 +48,13 @@ angular.module('cjfw').controller('tagCtrl', function($scope, $timeout) {
         })
     });
 
+
     $scope.printhis = function() {
-        $('.hidef').hide()
-        $('modal,.modal').printThis();
+        $('#pmodal').kinziPrint({
+            importCSS: true,
+            importStyle: false,
+            loadCSS: 'dist/css/print.css'
+        });
     }
 
     $scope.getpdata = function(tag) {
@@ -68,7 +72,7 @@ angular.module('cjfw').controller('tagCtrl', function($scope, $timeout) {
         $("#barcode").barcode(
             tag.PONumber,
             "code39", {
-                barWidth: 5,
+                barWidth: 4,
                 barHeight: 100,
                 fontSize: 14
             }
@@ -76,18 +80,5 @@ angular.module('cjfw').controller('tagCtrl', function($scope, $timeout) {
 
     }
 
-    // $('#textInput').on('click', function() {
-    //     $("#barcode").barcode(
-    //         this.value,
-    //         "code39", {
-    //             barWidth: 2,
-    //             barHeight: 100,
-    //             fontSize: 14
-    //         }
-    //     );
-    // });
-    // $('#textInput').trigger('click');
 
-
-    //window.print();
 });

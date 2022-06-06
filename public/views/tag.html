@@ -1,4 +1,5 @@
 <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
@@ -22,12 +23,8 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content ">
         <div class="container-fluid">
-
-
-
-            <!-- Main row -->
             <div class="row">
                 <!-- Left col -->
                 <div class="col-md-12">
@@ -134,14 +131,16 @@
         <!--/. container-fluid -->
     </section>
     <!-- /.content -->
+
 </div>
 
 <div class="modal fade" id="modal-xl">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
-            <div class="modal-body">
-                <table class="table m-0 madal">
+            <div id="pmodal" class="modal-body">
+
+                <table class="table m-0" style="border-top:0px!important">
                     <thead>
                         <tr>
                             <th colspan="2">
@@ -151,8 +150,8 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-left" style="font-size: 40px;">{{sidemark}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{PONumber}}</td>
+                            <td class="text-left pleft" style="font-size: 40px;  border: none;">{{sidemark}}</td>
+                            <td class="text-right pleft" style="font-size: 40px; border: none;">{{PONumber}}</td>
                         </tr>
                         <tr>
                             <td class="text-left" style="font-size: 40px;">{{Carrier}}</td>
@@ -165,12 +164,11 @@
                         <tr>
                             <td colspan="2" style="font-size: 40px;">{{OrderNumber}} <br>{{Store}}</td>
                         </tr>
-                        <tr>
-                            <hr>
-                        </tr>
+
                         <tr>
                             <td colspan="2">
                                 <center>
+                                    <hr>
                                     <div id="container">
                                         <div id="barcode"></div>
                                     </div>
@@ -179,7 +177,9 @@
                         </tr>
                     </tbody>
                 </table>
+
             </div>
+
             <div class="modal-footer justify-content-between hidef">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" ng-click="printhis();">Print</button>

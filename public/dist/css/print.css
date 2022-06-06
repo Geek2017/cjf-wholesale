@@ -1,0 +1,6 @@
+@media print {
+    .table td,
+    .table th {
+        border-top: 0px !important;
+    }
+}

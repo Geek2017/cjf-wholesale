@@ -72,27 +72,23 @@
                                             <th>Length</th>
                                             <th>Roll Number</th>
                                             <th>Quantity SqFt</th>
-
                                         </tr>
                                     </thead>
                                     <tbody id="addmaterial0">
-
                                         <tr>
-                                            <td><input type="text" class="form-control" ng-model="ponumber" placeholder="PO Number"></td>
-                                            <td><input type="text" class="form-control" ng-model="odernumber" placeholder="Order Number"></td>
-                                            <td><input type="text" class="form-control" ng-model="sidemark" placeholder="Side Mark"></td>
-                                            <td><input type="text" class="form-control" ng-model="width" placeholder="Width"></td>
-                                            <td><input type="text" class="form-control" ng-model="length" placeholder="Length"></td>
-                                            <td><input type="text" class="form-control" ng-model="rollnumber" placeholder="Roll Number"></td>
-                                            <td><input type="text" class="form-control" ng-model="quantity" placeholder="Quantity"></td>
+                                            <td><input type="text" class="form-control" placeholder="PO Number" required></td>
+                                            <td><input type="text" class="form-control" placeholder="Order Number" required></td>
+                                            <td><input type="text" class="form-control" placeholder="Side Mark" required></td>
+                                            <td><input type="number" class="form-control" placeholder="Width" required></td>
+                                            <td><input type="number" class="form-control" placeholder="Length" required></td>
+                                            <td><input type="text" class="form-control" placeholder="Roll Number" required></td>
+                                            <td><input type="number" class="form-control" placeholder="Quantity" required></td>
                                         </tr>
-
                                     </tbody>
                                 </table>
                                 <table class="table m-0" id="tblstorage1">
                                     <thead>
                                         <tr>
-
                                             <th class="col-2">Carrier</th>
                                             <th class="col-2">Material Type</th>
                                             <th class="col-2">Store</th>
@@ -214,18 +210,17 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <!-- /.table-responsive -->
+
                         </div>
 
                         <div class="card-footer">
 
                             <div class="btn-group float-right savedata">
-                                <button type="button" class="btn btn-primary" ng-click="savematerial()">SAVE DATA</button>
+                                <button type="button" class="btn btn-primary" ng-click="savematerial()">SAVE & PRINT</button>
                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
                                 <div class="dropdown-menu" role="menu">
-                                    <a class="dropdown-item" href="#">Print</a>
                                     <a class="dropdown-item" href="#">Email</a>
                                     <a class="dropdown-item" href="#">Download</a>
                                 </div>
@@ -239,4 +234,59 @@
             </div>
         </div>
     </section>
+</div>
+
+<div class="modal fade" id="modal-xl">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div id="pmodal" class="modal-body">
+                <table class="table m-0 madal">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h1 class="text-center" style="font-size: 100px;"><strong>{{PONumber}}</strong></h1>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left" style="font-size: 40px;">{{sidemark}}</td>
+                            <td class="text-right" style="font-size: 40px;">{{PONumber}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" style="font-size: 40px;">{{Carrier}}</td>
+                            <td class="text-right" style="font-size: 40px;">{{MaterialType}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" style="font-size: 40px;">{{size}}</td>
+                            <td class="text-right" style="font-size: 40px;">{{recvdate | date:'MM/dd/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size: 40px;">{{OrderNumber}} <br>{{Store}}</td>
+                        </tr>
+                        <tr>
+                            <hr>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <center>
+                                    <hr>
+                                    <div id="container">
+                                        <div id="barcode"></div>
+                                    </div>
+                                </center>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer justify-content-between hidef">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="printhis();">Print</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
