@@ -65,38 +65,72 @@ angular.module('cjfw').controller('storageCtrl', function($scope, $timeout) {
         }
 
 
+        $scope.ladings = mdata;
 
-        var updates = {};
-        updates['/storage/' + uid] = storage;
-        firebase.database().ref().update(updates);
+        $scope.recvdate = $scope.curdate
+        $('#modal-xl').modal('toggle');
 
-        if (updates) {
-            console.log(storage);
-            $scope.PONumber = mdata[0]["PO Number"];
-            $scope.sidemark = mdata[0].SideMark
-            $scope.Carrier = mdata[0].Carrier
-            $scope.MaterialType = mdata[0]['Material Type']
-            $scope.size = mdata[0].Width + "x" + mdata[0].Length
-            $scope.recvdate = $scope.curdate
-            $scope.OrderNumber = mdata[0]['Order Number']
-            $scope.Store = mdata[0].Store
+        // var updates = {};
+        // updates['/storage/' + uid] = storage;
+        // firebase.database().ref().update(updates);
+
+        let repeat = mdata.length;
+
+        console.log(repeat)
+
+        console.log(mdata);
+
+        setTimeout(() => {
+            if (repeat) {
+
+                var cntr = '#container';
+                var bids = 'barcode';
+
+                angular.forEach(mdata, function(value, key) {
+                    console.log(key + 1)
+
+                    let nc = cntr + parseInt(key + 1);
+
+                    var ids = bids + key;
+
+                    console.log(nc, ids);
+
+                    $(nc).append($("<div id='" + ids + "'><h1>BAR CODE</h1></div>"));
+
+                    setInterval(() => {
+                        $('#' + ids).barcode(
+                            mdata[key]['Roll Number'],
+                            "code39", {
+                                barWidth: 4,
+                                barHeight: 100,
+                                fontSize: 14
+                            }
+                        );
+
+                        console.log(mdata[key]['Roll Number']);
+                    }, 200);
 
 
-            $("#barcode").barcode(
-                $scope.PONumber,
-                "code39", {
-                    barWidth: 5,
-                    barHeight: 100,
-                    fontSize: 14
-                }
-            );
-
-            console.log($scope.PONumber)
-
-            $('#modal-xl').modal('toggle');
+                });
+            }
+        }, 500);
 
 
-        }
+
+
+
+
+
+
+
+
+
+        // if (updates) {
+
+
+
+
+        // }
 
         $scope.printhis = function() {
             $('#pmodal').kinziPrint({

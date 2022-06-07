@@ -242,28 +242,26 @@
 
             <div id="pmodal" class="modal-body">
                 <table class="table m-0 madal">
-                    <thead>
+                    <tbody ng-repeat="lading in ladings">
                         <tr>
-                            <th colspan="2">
-                                <h1 class="text-center" style="font-size: 100px;"><strong>{{PONumber}}</strong></h1>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-left" style="font-size: 40px;">{{sidemark}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{PONumber}}</td>
+                            <td colspan="2">
+                                <h1 class="text-center" style="font-size: 100px;"><strong>{{lading['Roll Number']}}</strong></h1>
+                            </td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 40px;">{{Carrier}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{MaterialType}}</td>
+                            <td class="text-left" style="font-size: 40px;">{{lading['SideMark']}}</td>
+                            <td class="text-right" style="font-size: 40px;">{{lading['PO Number']}}</td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 40px;">{{size}}</td>
+                            <td class="text-left" style="font-size: 40px;">{{lading['Carrier']}}</td>
+                            <td class="text-right" style="font-size: 40px;">{{lading['Width'] }} X {{lading['Length'] }}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" style="font-size: 40px;">{{lading['Material Type']}}</td>
                             <td class="text-right" style="font-size: 40px;">{{recvdate | date:'MM/dd/yyyy'}}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: 40px;">{{OrderNumber}} <br>{{Store}}</td>
+                            <td colspan="2" style="font-size: 40px;">{{lading['Order Number']}} <br>{{lading['Store']}}</td>
                         </tr>
                         <tr>
                             <hr>
@@ -272,13 +270,13 @@
                             <td colspan="2">
                                 <center>
                                     <hr>
-                                    <div id="container">
-                                        <div id="barcode"></div>
+                                    <div id="container{{$index + 1}}">
                                     </div>
                                 </center>
                             </td>
                         </tr>
                     </tbody>
+
                 </table>
             </div>
             <div class="modal-footer justify-content-between hidef">
