@@ -70,9 +70,9 @@ angular.module('cjfw').controller('storageCtrl', function($scope, $timeout) {
         $scope.recvdate = $scope.curdate
         $('#modal-xl').modal('toggle');
 
-        // var updates = {};
-        // updates['/storage/' + uid] = storage;
-        // firebase.database().ref().update(updates);
+        var updates = {};
+        updates['/storage/' + uid] = storage;
+        firebase.database().ref().update(updates);
 
         let repeat = mdata.length;
 
@@ -80,62 +80,47 @@ angular.module('cjfw').controller('storageCtrl', function($scope, $timeout) {
 
         console.log(mdata);
 
-        setTimeout(() => {
-            if (repeat) {
+        if (updates) {
+            console.log(updates)
+            setTimeout(() => {
+                if (repeat) {
 
-                var cntr = '#container';
-                var bids = 'barcode';
+                    var cntr = '#container';
+                    var bids = 'barcode';
 
-                angular.forEach(mdata, function(value, key) {
-                    console.log(key + 1)
+                    angular.forEach(mdata, function(value, key) {
+                        console.log(key + 1)
 
-                    let nc = cntr + parseInt(key + 1);
+                        let nc = cntr + parseInt(key + 1);
 
-                    var ids = bids + key;
+                        var ids = bids + key;
 
-                    console.log(nc, ids);
+                        console.log(nc, ids);
 
-                    $(nc).append($("<div id='" + ids + "'><h1>BAR CODE</h1></div>"));
+                        $(nc).append($("<div id='" + ids + "'><h1>BAR CODE</h1></div>"));
 
-                    setInterval(() => {
-                        $('#' + ids).barcode(
-                            mdata[key]['Roll Number'],
-                            "code39", {
-                                barWidth: 4,
-                                barHeight: 100,
-                                fontSize: 14
-                            }
-                        );
+                        setTimeout(() => {
+                            $('#' + ids).barcode(
+                                mdata[key]['Roll Number'],
+                                "code39", {
+                                    barWidth: 4,
+                                    barHeight: 100,
+                                    fontSize: 14
+                                }
+                            );
 
-                        console.log(mdata[key]['Roll Number']);
-                    }, 200);
-
-
-                });
-            }
-        }, 500);
+                            console.log(mdata[key]['Roll Number']);
+                        }, 200);
 
 
-
-
-
-
-
-
-
-
-
-        // if (updates) {
-
-
-
-
-        // }
+                    });
+                }
+            }, 500);
+        }
 
         $scope.printhis = function() {
             $('#pmodal').kinziPrint({
                 importCSS: true,
-                importStyle: false,
                 loadCSS: 'dist/css/print.css'
             });
         }

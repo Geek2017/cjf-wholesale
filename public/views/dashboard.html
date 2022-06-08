@@ -9,8 +9,7 @@
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v2</li>
+                        <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -26,22 +25,11 @@
         <div class="container-fluid">
             <!-- Info boxes -->
             <div class="row">
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-house-user"></i></span>
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">STORAGE</span>
-                            <span class="info-box-number">1,200</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-tags"></i></span>
+                        <span class="info-box-icon bg-purple elevation-1"><i class="fas fa-tags"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">TAGS</span>
@@ -53,15 +41,27 @@
                 </div>
                 <!-- /.col -->
 
+                <div class="col-12 col-sm-6 col-md-3">
+                    <div class="info-box">
+                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-solid fa-table"></i></span>
+
+                        <div class="info-box-content">
+                            <span class="info-box-text">Materials</span>
+                            <span class="info-box-number">1,200</span>
+                        </div>
+                        <!-- /.info-box-content -->
+                    </div>
+                    <!-- /.info-box -->
+                </div>
                 <!-- fix for small devices only -->
                 <div class="clearfix hidden-md-up"></div>
 
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-database"></i></span>
+                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-solid fa-file-invoice-dollar"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">DATABASE</span>
+                            <span class="info-box-text">Lading</span>
                             <span class="info-box-number">760</span>
                         </div>
                         <!-- /.info-box-content -->
@@ -71,7 +71,7 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-boxes"></i></span>
+                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-boxes text-white"></i></span>
 
                         <div class="info-box-content">
                             <span class="info-box-text">SHELF</span>
@@ -82,120 +82,132 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
+
+
             </div>
 
 
-            <!-- Main row -->
             <div class="row">
-                <!-- Left col -->
                 <div class="col-md-12">
-                    <!-- MAP & BOX PANE -->
-
-
-
-                    <!-- TABLE: LATEST ORDERS -->
                     <div class="card">
-                        <div class="card-header border-transparent">
-                            <h3 class="card-title">Latest Orders</h3>
+                        <div class="card-header">
+                            <h5 class="card-title">Monthly Recap Report</h5>
 
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
-            <i class="fas fa-minus"></i>
-          </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-            <i class="fas fa-times"></i>
-          </button>
+                          <i class="fas fa-minus"></i>
+                 
                             </div>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table m-0">
-                                    <thead>
-                                        <tr>
-                                            <th>Order ID</th>
-                                            <th>Item</th>
-                                            <th>Status</th>
-                                            <th>Popularity</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-info">Processing</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <p class="text-center">
+                                        <strong>Inventory: 1 Jan, 2014 - 30 Jul, 2014</strong>
+                                    </p>
+
+                                    <div class="chart">
+                                        <!-- Sales Chart Canvas -->
+                                        <canvas id="salesChart" height="200" style="height: 200px;"></canvas>
+                                    </div>
+                                    <!-- /.chart-responsive -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-md-4">
+                                    <p class="text-center">
+                                        <strong>Goal Completion</strong>
+                                    </p>
+
+                                    <div class="progress-group">
+                                        Tags Entry
+                                        <span class="float-right"><b>160</b>/200</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-purple" style="width: 80%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+
+                                    <div class="progress-group">
+                                        Meterial Entry
+                                        <span class="float-right"><b>310</b>/400</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-info" style="width: 75%"></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- /.progress-group -->
+                                   
+
+                                    <!-- /.progress-group -->
+                                    <div class="progress-group">
+                                        Lading Entry
+                                        <span class="float-right"><b>250</b>/500</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-green" style="width: 50%"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="progress-group">
+                                        <span class="progress-text">Shelf Entry</span>
+                                        <span class="float-right"><b>480</b>/800</span>
+                                        <div class="progress progress-sm">
+                                            <div class="progress-bar bg-orange" style="width: 60%"></div>
+                                        </div>
+                                    </div>
+                                    <!-- /.progress-group -->
+                                </div>
+                                <!-- /.col -->
                             </div>
-                            <!-- /.table-responsive -->
+                            <!-- /.row -->
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer clearfix">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+                        <!-- ./card-body -->
+                        <div class="card-footer">
+                            <div class="row">
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 17%</span>
+                                        <h5 class="description-header">160</h5>
+                                        <span class="description-text">Tags</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-warning"><i class="fas fa-caret-left"></i> 0%</span>
+                                        <h5 class="description-header">310</h5>
+                                        <span class="description-text">Material</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block border-right">
+                                        <span class="description-percentage text-success"><i class="fas fa-caret-up"></i> 20%</span>
+                                        <h5 class="description-header">250</h5>
+                                        <span class="description-text">Lading</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                                <!-- /.col -->
+                                <div class="col-sm-3 col-6">
+                                    <div class="description-block">
+                                        <span class="description-percentage text-danger"><i class="fas fa-caret-down"></i> 18%</span>
+                                        <h5 class="description-header">480</h5>
+                                        <span class="description-text">Shelf</span>
+                                    </div>
+                                    <!-- /.description-block -->
+                                </div>
+                            </div>
+                            <!-- /.row -->
                         </div>
                         <!-- /.card-footer -->
                     </div>
                     <!-- /.card -->
                 </div>
                 <!-- /.col -->
-
-
-                <!-- /.col -->
             </div>
-            <!-- /.row -->
         </div>
         <!--/. container-fluid -->
     </section>

@@ -17,11 +17,12 @@ angular
             }).when('/material', {
                 templateUrl: 'views/material.html',
                 controller: 'materialCtrl'
-            }).when('/shelf', {
-                templateUrl: 'views/shelf.html',
-                controller: 'shelfCtrl'
             }).when('/billsoflading', {
                 templateUrl: 'views/billsoflading.html',
                 controller: 'billsofladingCtrl'
+            }).when('/shelf', {
+                templateUrl: 'views/shelf.html',
+                controller: 'shelfCtrl'
             })
+
     });

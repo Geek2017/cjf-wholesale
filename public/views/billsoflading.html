@@ -1,16 +1,17 @@
 <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Insight</h1>
+
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">Dashboard v2</li>
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Tag</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -22,90 +23,43 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <section class="content">
+    <section class="content ">
         <div class="container-fluid">
-            <!-- Info boxes -->
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box">
-                        <span class="info-box-icon bg-info elevation-1"><i class="fas fa-house-user"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">STORAGE</span>
-                            <span class="info-box-number">1,200</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-tags"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">TAGS</span>
-                            <span class="info-box-number">41,410</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-
-                <!-- fix for small devices only -->
-                <div class="clearfix hidden-md-up"></div>
-
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-database"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">DATABASE</span>
-                            <span class="info-box-number">760</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-boxes"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">SHELF</span>
-                            <span class="info-box-number">2,000</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
-            </div>
-
-
-            <!-- Main row -->
             <div class="row">
                 <!-- Left col -->
+                <div class="col-md-6" style="left: 910px;">
+                    <div class="row">
+                        <div class="">
+                            <span class="badge badge-success">FROM:</span>
+                        </div>
+                        <div class="col-3">
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="">
+                            <span class="badge badge-danger">UNTIL:</span>
+                        </div>
+                        <div class="col-3">
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <br><br>
                 <div class="col-md-12">
                     <!-- MAP & BOX PANE -->
-
-
 
                     <!-- TABLE: LATEST ORDERS -->
                     <div class="card">
                         <div class="card-header border-transparent">
-                            <h3 class="card-title">Latest Orders</h3>
+                            <h3 class="card-title">Bill of Lading List</h3>
 
-                            <div class="card-tools">
-                                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-            <i class="fas fa-minus"></i>
-          </button>
-                                <button type="button" class="btn btn-tool" data-card-widget="remove">
-            <i class="fas fa-times"></i>
-          </button>
+                            <div class="card-tools float-right">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <input type="text" ng-model="search" class="form-control" placeholder="Find...">
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body p-0">
@@ -113,69 +67,25 @@
                                 <table class="table m-0">
                                     <thead>
                                         <tr>
-                                            <th>Order ID</th>
-                                            <th>Item</th>
-                                            <th>Status</th>
-                                            <th>Popularity</th>
+                                            <th class="col-2">Date</th>
+                                            <th class="col-3">Bill Of Lading</th>
+                                            <th class="col-2">Vendor</th>
+                                            <th class="col-2">Anexo</th>
+                                            <th class="col-2">Controls</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody dir-paginate="tag in tags |  filter:search | itemsPerPage: pageSize">
                                         <tr>
-                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
+                                            <td>{{tag.date | date:'MM/dd/yyyy'}}</td>
+                                            <td>{{tag.billofland}}</td>
+                                            <td>{{tag.vendor}}</td>
+                                            <td>data/sample.pdf</td>
                                             <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">UPDATE</button>
+                                                <button type="button" class="btn btn-danger btn-sm" ng-click="getpdata(tag)">DELETE</button>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-info">Processing</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                                            <td>Samsung Smart TV</td>
-                                            <td><span class="badge badge-warning">Pending</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                                            <td>iPhone 6 Plus</td>
-                                            <td><span class="badge badge-danger">Delivered</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                                            <td>Call of Duty IV</td>
-                                            <td><span class="badge badge-success">Shipped</span></td>
-                                            <td>
-                                                <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                                            </td>
-                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -183,8 +93,8 @@
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer clearfix">
-                            <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-                            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+                            <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
+                            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a> -->
                         </div>
                         <!-- /.card-footer -->
                     </div>
@@ -200,4 +110,61 @@
         <!--/. container-fluid -->
     </section>
     <!-- /.content -->
+
+</div>
+
+<div class="modal fade" id="modal-xl">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+
+            <div id="pmodal" class="modal-body">
+
+                <table class="table m-0" style="border-top:0px!important">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h1 class="text-center" style="font-size: 100px;"><strong>{{PONumber}}</strong></h1>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left pleft" style="font-size: 40px;  border: none;">{{sidemark}}</td>
+                            <td class="text-right pleft" style="font-size: 40px; border: none;">{{PONumber}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" style="font-size: 40px;">{{Carrier}}</td>
+                            <td class="text-right" style="font-size: 40px;">{{MaterialType}}</td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" style="font-size: 40px;">{{size}}</td>
+                            <td class="text-right" style="font-size: 40px;">{{recvdate | date:'MM/dd/yyyy'}}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="font-size: 40px;">{{OrderNumber}} <br>{{Store}}</td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <center>
+                                    <hr>
+                                    <div id="container">
+                                        <div id="barcode"></div>
+                                    </div>
+                                </center>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+
+            <div class="modal-footer justify-content-between hidef">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" ng-click="printhis();">Print</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
 </div>
