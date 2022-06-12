@@ -1,12 +1,14 @@
 angular.module('cjfw').controller('indexCtrl', function($scope, $timeout) {
 
-    var config = {
-        apiKey: "AIzaSyCAG1P1ioOD5tdaxjPWcphdUyksk55uJ9k",
-        authDomain: "cjfwholesale.firebaseapp.com",
-        databaseURL: "https://cjfwholesale-default-rtdb.firebaseio.com/",
-        projectId: "cjfwholesale"
-    };
+    const session = sessionStorage.getItem('stat');
 
-    firebase.initializeApp(config);
+    if (!session) {
+        window.location.href = "login.html"
+    }
+
+    $scope.logout = function() {
+        sessionStorage.clear();
+        window.location.reload();
+    }
 
 });

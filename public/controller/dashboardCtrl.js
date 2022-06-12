@@ -1,4 +1,4 @@
-angular.module('cjfw').controller('dashboardCrtl', function($scope, $timeout) {
+angular.module('cjfw').controller('dashboardCtrl', function($scope, $timeout) {
 
     /* global Chart:false */
 
