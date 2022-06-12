@@ -27,7 +27,7 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Left col -->
-                <div class="col-md-6" style="left: 910px;">
+                <div class="col-md-6">
                     <div class="row">
                         <div class="">
                             <span class="badge badge-success">FROM:</span>
@@ -67,9 +67,10 @@
                                 <table class="table m-0">
                                     <thead>
                                         <tr>
+                                            <th>PO #</th>
                                             <th class="col-1">Date</th>
                                             <th>Store</th>
-                                            <th>PO #</th>
+
                                             <th>Materials</th>
                                             <th>Side Mark</th>
                                             <th>Roll #</th>
@@ -82,9 +83,10 @@
                                     </thead>
                                     <tbody dir-paginate="tag in tags |  filter:search | itemsPerPage: pageSize">
                                         <tr>
+                                            <td>{{tag.PONumber}}</td>
                                             <td>{{tag.date | date:'MM/dd/yyyy'}}</td>
                                             <td>{{tag.Store}}</td>
-                                            <td>{{tag.PONumber}}</td>
+
                                             <td>{{tag.MaterialType}}</td>
                                             <td>{{tag.SideMark}}</td>
                                             <td>{{tag.RollNumber}}</td>
@@ -93,7 +95,7 @@
                                             <td>{{tag.Length}}</td>
                                             <td>{{tag.Description}}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">UPDATE</button>
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">EDIT</button>
                                                 <button type="button" class="btn btn-danger btn-sm" ng-click="getpdata(tag)">DELETE</button>
                                             </td>
                                         </tr>

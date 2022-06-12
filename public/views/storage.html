@@ -50,7 +50,43 @@
 
                                 <div class="col-4">
                                     <label for="">Vendor:</label>
-                                    <input type="text" class="form-control" ng-model="vendor" placeholder="Vendor">
+                                    <select class="form-control">
+                                        <option value="0" selected disabled>SELECT</option>
+                                        <option value="A.P.T. Distributing">A.P.T. Distributing
+                                        </option>
+                                        <option value="Accurate Transport">Accurate Transport
+                                        </option>
+                                        <option value="AllState">AllState</option>
+                                        <option value="APT">APT</option>
+                                        <option value="Belknap">Belknap</option>
+                                        <option value="Calhoun Distributio">Calhoun Distributio
+                                        </option>
+                                        <option value="Carpenter">Carpenter</option>
+                                        <option value="Classic Tile">Classic Tile</option>
+                                        <option value="Couristan Carpets">Couristan Carpets</option>
+                                        <option value="Dalyn">Dalyn</option>
+                                        <option value="Dedicated LLC">Dedicated LLC</option>
+                                        <option value="Dixie">Dixie</option>
+                                        <option value="Elias Wilf">Elias Wilf</option>
+                                        <option value="Engineered">Engineered</option>
+                                        <option value="Fabrica">Fabrica</option>
+                                        <option value="Fishman">Fishman</option>
+                                        <option value="JJ Haines">JJ Haines</option>
+                                        <option value="Kane">Kane</option>
+                                        <option value="knae">knae</option>
+                                        <option value="Mannington">Mannington</option>
+                                        <option value="Masland">Masland</option>
+                                        <option value="Mohawk">Mohawk</option>
+                                        <option value="Nourtex/Nourison RU">Nourtex/Nourison RU
+                                        </option>
+                                        <option value="PCC Ringgold">PCC Ringgold</option>
+                                        <option value="Phenix">Phenix</option>
+                                        <option value="Shaw">Shaw</option>
+                                        <option value="Southwind">Southwind</option>
+                                        <option value="Stanton">Stanton</option>
+                                        <option value="Stark">Stark</option>
+                                        <option value="Urato">Urato</option>
+                                    </select>
                                 </div>
 
                                 <div class="col-4">
@@ -61,8 +97,8 @@
                         </div>
 
                         <div class="card-body p-0">
-                            <div class="table-responsive">
-                                <table class="table m-0" id="tblstorage0">
+                            <div class="table-responsive card">
+                                <table class=" table m-0" id="tblstorage0">
                                     <thead>
                                         <tr>
                                             <th>PO Number</th>
@@ -70,8 +106,8 @@
                                             <th>SideMark</th>
                                             <th>Width</th>
                                             <th>Length</th>
-                                            <th>Roll Number</th>
                                             <th>Quantity SqFt</th>
+                                            <th>Roll Number</th>
                                         </tr>
                                     </thead>
                                     <tbody id="addmaterial0">
@@ -81,12 +117,12 @@
                                             <td><input type="text" class="form-control" placeholder="Side Mark" required></td>
                                             <td><input type="number" class="form-control" placeholder="Width" required></td>
                                             <td><input type="number" class="form-control" placeholder="Length" required></td>
-                                            <td><input type="text" class="form-control" placeholder="Roll Number" required></td>
                                             <td><input type="number" class="form-control" placeholder="Quantity" required></td>
+                                            <td><input type="text" class="form-control" placeholder="Roll Number" required></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                                <table class="table m-0" id="tblstorage1">
+                                <table class=" table m-0" id="tblstorage1">
                                     <thead>
                                         <tr>
                                             <th class="col-2">Carrier</th>
@@ -99,42 +135,10 @@
                                         <tr>
 
                                             <td><select class="form-control">
-                                                <option value="0" selected>SELECT</option>
-                                                <option value="A.P.T. Distributing">A.P.T. Distributing
-                                                </option>
-                                                <option value="Accurate Transport">Accurate Transport
-                                                </option>
-                                                <option value="AllState">AllState</option>
-                                                <option value="APT">APT</option>
-                                                <option value="Belknap">Belknap</option>
-                                                <option value="Calhoun Distributio">Calhoun Distributio
-                                                </option>
-                                                <option value="Carpenter">Carpenter</option>
-                                                <option value="Classic Tile">Classic Tile</option>
-                                                <option value="Couristan Carpets">Couristan Carpets</option>
-                                                <option value="Dalyn">Dalyn</option>
-                                                <option value="Dedicated LLC">Dedicated LLC</option>
-                                                <option value="Dixie">Dixie</option>
-                                                <option value="Elias Wilf">Elias Wilf</option>
-                                                <option value="Engineered">Engineered</option>
-                                                <option value="Fabrica">Fabrica</option>
-                                                <option value="Fishman">Fishman</option>
-                                                <option value="JJ Haines">JJ Haines</option>
-                                                <option value="Kane">Kane</option>
-                                                <option value="knae">knae</option>
-                                                <option value="Mannington">Mannington</option>
-                                                <option value="Masland">Masland</option>
-                                                <option value="Mohawk">Mohawk</option>
-                                                <option value="Nourtex/Nourison RU">Nourtex/Nourison RU
-                                                </option>
-                                                <option value="PCC Ringgold">PCC Ringgold</option>
-                                                <option value="Phenix">Phenix</option>
-                                                <option value="Shaw">Shaw</option>
-                                                <option value="Southwind">Southwind</option>
-                                                <option value="Stanton">Stanton</option>
-                                                <option value="Stark">Stark</option>
+                                                <option value="0" selected disabled>SELECT</option>
                                                 <option value="UPS">UPS</option>
-                                                <option value="Urato">Urato</option>
+                                                <option value="DHL">DHL</option>
+                                                <option value="FedEx">FedEx</option>
                                             </select></td>
                                             <td>
                                                 <select class="form-control" ng-model="materialtype">
@@ -245,34 +249,40 @@
                     <tbody ng-repeat="lading in ladings">
                         <tr>
                             <td colspan="2">
-                                <h1 class="text-center" style="font-size: 100px;"><strong>{{lading['Roll Number']}}</strong></h1>
+                                <h1 class="text-right" style="font-size: 100px;"><strong>{{lading['Roll Number']}}</strong></h1>
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 40px;">{{lading['SideMark']}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{lading['PO Number']}}</td>
+                            <td class="text-left" style="font-size: 40px;"><strong>{{lading['SideMark']}}</strong> <br>{{lading['Width'] }} X {{lading['Length'] }}</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 40px;">{{lading['Carrier']}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{lading['Width'] }} X {{lading['Length'] }}</td>
+                            <td class="text-left" style="font-size: 14px;"><strong>CARRIER:</strong> {{lading['Carrier']}}</td>
+                            <td></td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 40px;">{{lading['Material Type']}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{recvdate | date:'MM/dd/yyyy'}}</td>
+                            <td class="text-left" style="font-size: 14px;"><strong>STORE:</strong> {{lading['Store']}}</td>
+                            <td class="text-right" style="font-size: 14px;"><strong>PO NUMBER:</strong> {{lading['PO Number']}}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: 40px;">{{lading['Order Number']}} <br>{{lading['Store']}}</td>
+                            <td class="text-left" style="font-size: 14px;"><strong>MATERIAL DESC:</strong> {{lading['Material Type']}}</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="text-left" style="font-size: 14px;">WAREHOUSE POSITION:<strong> 60-2</strong></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <hr>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <center>
-                                    <hr>
-                                    <div id="container{{$index + 1}}">
-                                    </div>
-                                </center>
+
+                                <hr>
+                                <div class="float-right">
+                                    <img src="/public/dist/barcod.png" height="150" width="300" alt="" srcset="">
+                                </div>
+
                             </td>
                         </tr>
                     </tbody>

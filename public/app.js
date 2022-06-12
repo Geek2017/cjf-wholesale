@@ -7,7 +7,7 @@ angular
         $routeProvider
             .when('/', {
                 templateUrl: 'views/dashboard.html',
-                controller: 'dashboardCrtl'
+                controller: 'dashboardCtrl'
             }).when('/storage', {
                 templateUrl: 'views/storage.html',
                 controller: 'storageCtrl'
@@ -23,6 +23,9 @@ angular
             }).when('/shelf', {
                 templateUrl: 'views/shelf.html',
                 controller: 'shelfCtrl'
+            }).when('/invoices', {
+                templateUrl: 'views/invoices.html',
+                controller: 'invoicesCtrl'
             })
 
     });

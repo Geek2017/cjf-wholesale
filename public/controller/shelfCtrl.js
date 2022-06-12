@@ -1,12 +1,10 @@
 angular.module('cjfw').controller('shelfCtrl', function($scope, $timeout) {
 
-    firebase.database().ref('/storage/').orderByChild('date').on("value", function(snapshot) {
+    firebase.database().ref('/sheft/').orderByChild('date').on("value", function(snapshot) {
         $timeout(function() {
             $scope.$apply(function() {
 
                 let returnArr = [];
-
-                let ndata;
 
 
 
@@ -15,30 +13,13 @@ angular.module('cjfw').controller('shelfCtrl', function($scope, $timeout) {
                     item.key = childSnapshot.key;
 
                     console.log(item)
-                    angular.forEach(item.details, function(value, key) {
-                        ndata = [{
-                            "date": item.date,
-                            "billofland": item.billofland,
-                            "vendor": item.vendor,
-                            "Carrier": item.details[key].Carrier,
-                            "Description": item.details[key].Description,
-                            "Length": item.details[key].Length,
-                            "MaterialType": item.details[key]['Material Type'],
-                            "OrderNumber": item.details[key]['Order Number'],
-                            "PONumber": item.details[key]['PO Number'],
-                            "QuantitySqFt": item.details[key]['Quantity SqFt'],
-                            "RollNumber": item.details[key]['Roll Number'],
-                            "SideMark": item.details[key].SideMark,
-                            "Store": item.details[key].Store,
-                            "Width": item.details[key].Width
-                        }]
 
-                        returnArr.push(ndata[0]);
-                    });
+                    returnArr.push(item);
+
 
                 });
 
-                $scope.tags = returnArr;
+                $scope.shelfs = returnArr;
 
                 console.log(returnArr);
 
@@ -55,26 +36,26 @@ angular.module('cjfw').controller('shelfCtrl', function($scope, $timeout) {
         });
     }
 
-    $scope.getpdata = function(tag) {
+    $scope.addshelf = function(tag) {
 
         $('#modal-xl').modal('toggle');
-        $scope.PONumber = tag.PONumber
-        $scope.sidemark = tag.SideMark
-        $scope.Carrier = tag.Carrier
-        $scope.MaterialType = tag.MaterialType
-        $scope.size = tag.Width + "x" + tag.Length
-        $scope.recvdate = tag.date
-        $scope.OrderNumber = tag.OrderNumber
-        $scope.Store = tag.Store
-        console.log(tag)
-        $("#barcode").barcode(
-            tag.PONumber,
-            "code39", {
-                barWidth: 4,
-                barHeight: 100,
-                fontSize: 14
-            }
-        );
+    }
+
+    $scope.saveshelf = function() {
+        var uid = firebase.database().ref().child('/sheft').push().key;
+
+        var shelf = {
+            timstamp: firebase.database.ServerValue.TIMESTAMP,
+            Shelf: $scope.shelf,
+            rollnumber: $scope.rollnumber
+
+        }
+
+        var updates = {};
+        updates['/sheft/' + uid] = shelf;
+        firebase.database().ref().update(updates);
+
+        console.log(updates);
 
     }
 });

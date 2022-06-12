@@ -47,6 +47,8 @@ angular.module('cjfw').controller('storageCtrl', function($scope, $timeout) {
         }
     }
 
+
+
     $scope.savematerial = function() {
 
         const mdata = angular.merge($scope.tojson0(obj0), $scope.tojson1(obj1));
@@ -119,10 +121,13 @@ angular.module('cjfw').controller('storageCtrl', function($scope, $timeout) {
         }
 
         $scope.printhis = function() {
+
             $('#pmodal').kinziPrint({
                 importCSS: true,
                 loadCSS: 'dist/css/print.css'
             });
         }
     }
+
+
 });
