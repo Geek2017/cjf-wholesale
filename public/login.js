@@ -1,12 +1,13 @@
 angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
 
-
-
+    $scope.register = function() {
+        window.location.href = "register.html"
+    }
 
     $('#loginForm').on('submit', function(e) {
         e.preventDefault();
 
-        firebase.database().ref('users').orderByChild('email').equalTo($scope.email).on("value", function(snapshot) {
+        firebase.database().ref('/users').orderByChild('email').equalTo($scope.email).on("value", function(snapshot) {
 
             snapshot.forEach(childSnapshot => {
                 let item = childSnapshot.val();

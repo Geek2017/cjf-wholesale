@@ -1,0 +1,140 @@
+<div class="content-wrapper">
+
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+
+                </div>
+                <!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                        <li class="breadcrumb-item active">Shelf</li>
+                    </ol>
+                </div>
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <section class="content ">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- Left col -->
+
+
+
+
+
+                <br><br>
+                <div class="col-md-12">
+                    <!-- MAP & BOX PANE -->
+
+                    <!-- TABLE: LATEST ORDERS -->
+                    <div class="card">
+                        <div class="card-header border-transparent">
+                            <h3 class="card-title">Users List</h3>
+
+                            <div class="card-tools float-right">
+                                <div class="row">
+                                    <div class="col-7">
+                                        <input type="text" ng-model="search" class="form-control" placeholder="Find...">
+                                    </div>
+                                    <div class="col-5">
+                                        <button type="button" class="btn btn-outline-success btn-block" ng-click="addshelf()"><i class="fa fa-folder-plus"> Add Users </i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table m-0">
+                                    <thead>
+                                        <tr>
+                                            <th class="col-3">Date</th>
+                                            <th class="col-3">Full Name</th>
+                                            <th class="col-4">Email</th>
+                                            <th>Controls</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody dir-paginate="user in users |  filter:search | itemsPerPage: pageSize">
+                                        <tr>
+                                            <td>{{user.timstamp | date:'MM/dd/yyyy'}}</td>
+                                            <td>{{user.fullname}}</td>
+                                            <td>{{user.email}}</td>
+                                            <td>
+
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="">&nbsp;&nbsp;EDIT&nbsp;&nbsp;</button>
+                                                <button type="button" class="btn btn-danger btn-sm" ng-click="">DELETE</button>
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer clearfix">
+                            <!-- <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
+                            <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a> -->
+                        </div>
+                        <!-- /.card-footer -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+                <!-- /.col -->
+
+
+                <!-- /.col -->
+            </div>
+            <!-- /.row -->
+        </div>
+        <!--/. container-fluid -->
+    </section>
+    <!-- /.content -->
+
+</div>
+
+<div class="modal fade" id="modal-xl">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+
+            <div id="pmodal" class="modal-body ">
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Shelf:</label>
+                                    <input type="text" ng-model="shelf" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Roll Number:</label>
+                                    <input type="text" ng-model="rollnumber" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between hidef">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-primary" ng-click="saveshelf();">SAVE</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

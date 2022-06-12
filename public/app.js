@@ -26,6 +26,9 @@ angular
             }).when('/invoices', {
                 templateUrl: 'views/invoices.html',
                 controller: 'invoicesCtrl'
+            }).when('/users', {
+                templateUrl: 'views/users.html',
+                controller: 'usersCtrl'
             })
 
     });

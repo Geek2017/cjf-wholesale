@@ -1,4 +1,7 @@
 angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
+    $scope.backlogin = function() {
+        window.location.href = "login.html"
+    }
 
     $scope.register = function() {
         var uid = firebase.database().ref().child('/users').push().key;
