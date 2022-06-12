@@ -50,7 +50,7 @@
 
                                 <div class="col-4">
                                     <label for="">Vendor:</label>
-                                    <select class="form-control">
+                                    <select class="form-control" ng-model="vendor">
                                         <option value="0" selected disabled>SELECT</option>
                                         <option value="A.P.T. Distributing">A.P.T. Distributing
                                         </option>
@@ -280,7 +280,8 @@
 
                                 <hr>
                                 <div class="float-right">
-                                    <img src="/public/dist/barcod.png" height="150" width="300" alt="" srcset="">
+                                    <div id="container{{$index + 1}} ">
+                                    </div>
                                 </div>
 
                             </td>

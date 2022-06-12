@@ -3,7 +3,11 @@ angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
         window.location.href = "login.html"
     }
 
-    $scope.register = function() {
+
+    $scope.registeruser = function() {
+
+
+
         var uid = firebase.database().ref().child('/users').push().key;
 
         var users = {
@@ -13,6 +17,7 @@ angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
             email: $scope.email
         }
 
+        console.log(users)
 
         var updates = {};
         updates['/users/' + uid] = users;
@@ -21,7 +26,11 @@ angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
 
         if (updates) {
             console.log(updates)
-            window.location.href = "login.html"
+            alert('Success your regitered pls. login')
+            setTimeout(() => {
+                window.location.href = "login.html"
+            }, 2000);
+
         }
     }
 });
