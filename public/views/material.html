@@ -70,7 +70,7 @@
                                             <th>PO #</th>
                                             <th class="col-1">Date</th>
                                             <th>Store</th>
-
+                                            <th>Shelf #</th>
                                             <th>Materials</th>
                                             <th>Side Mark</th>
                                             <th>Roll #</th>
@@ -86,7 +86,7 @@
                                             <td>{{tag.PONumber}}</td>
                                             <td>{{tag.date | date:'MM/dd/yyyy'}}</td>
                                             <td>{{tag.Store}}</td>
-
+                                            <td>N/A</td>
                                             <td>{{tag.MaterialType}}</td>
                                             <td>{{tag.SideMark}}</td>
                                             <td>{{tag.RollNumber}}</td>
@@ -96,7 +96,7 @@
                                             <td>{{tag.Description}}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">EDIT</button>
-                                                <button type="button" class="btn btn-danger btn-sm" ng-click="getpdata(tag)">DELETE</button>
+
                                             </td>
                                         </tr>
 
