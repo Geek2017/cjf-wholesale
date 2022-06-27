@@ -25,8 +25,26 @@
     <!-- Main content -->
     <section class="content ">
         <div class="container-fluid">
+            <label for="">Date Filter :</label>
             <div class="row">
-                <!-- Left col -->
+                <div class="col-md-6" style="margin: 0.5%;">
+                    <div class="row">
+                        <div class="">
+                            <span class="badge badge-success">FROM:</span>
+                        </div>
+                        <div class="col-3">
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="">
+                            <span class="badge badge-danger">UNTIL:</span>
+                        </div>
+                        <div class="col-3">
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+                </div>
+                <br><br>
+
                 <div class="col-md-12">
                     <!-- MAP & BOX PANE -->
 
@@ -39,25 +57,16 @@
 
                             <div class="card-tools float-right">
                                 <div class="row">
-                                    <div class="col-1">
-                                        <span class="badge badge-info">SEARCH:</span>
+                                    <div class="col-12">
+                                        <label for="">
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" ng-model="search" data-target="#reservationdate">
+                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"> <i class="fas fa-search fa-fw"></i></div>
+                                            </div>
+                                        </div>
+                                    </label>
                                     </div>
-                                    <div class="col-3">
-                                        <input type="text" ng-model="search" class="form-control">
-                                    </div>
-                                    <div class="col-1">
-                                        <span class="badge badge-success">FROM:</span>
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="date" class="form-control">
-                                    </div>
-                                    <div class="col-1">
-                                        <span class="badge badge-danger">TO:</span>
-                                    </div>
-                                    <div class="col-3">
-                                        <input type="date" class="form-control">
-                                    </div>
-
                                 </div>
                             </div>
 

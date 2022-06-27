@@ -1,7 +1,5 @@
 angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout) {
 
-    // $('#modal-xl').modal('toggle');
-
     firebase.database().ref('/storage/').orderByChild('date').on("value", function(snapshot) {
         $timeout(function() {
             $scope.$apply(function() {
@@ -48,7 +46,6 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
         })
     });
 
-
     $scope.printhis = function() {
         $('#pmodal').kinziPrint({
             importCSS: true,
@@ -79,6 +76,31 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
         );
 
     }
+
+    $scope.viewpdata = function(tag) {
+
+        $('#modalview').modal('toggle');
+        $scope.PONumber = tag.PONumber
+        $scope.sidemark = tag.SideMark
+        $scope.Carrier = tag.Carrier
+        $scope.MaterialType = tag.MaterialType
+        $scope.size = tag.Width + "x" + tag.Length
+        $scope.recvdate = tag.date
+        $scope.OrderNumber = tag.OrderNumber
+        $scope.Store = tag.Store
+        console.log(tag)
+        $("#barcode").barcode(
+            tag.PONumber,
+            "code39", {
+                barWidth: 4,
+                barHeight: 100,
+                fontSize: 14
+            }
+        );
+
+    }
+
+
 
 
 });

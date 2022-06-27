@@ -11,7 +11,7 @@
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Shelf</li>
+                        <li class="breadcrumb-item active">Users</li>
                     </ol>
                 </div>
                 <!-- /.col -->
@@ -27,11 +27,6 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- Left col -->
-
-
-
-
-
                 <br><br>
                 <div class="col-md-12">
                     <!-- MAP & BOX PANE -->
@@ -47,7 +42,7 @@
                                         <input type="text" ng-model="search" class="form-control" placeholder="Find...">
                                     </div>
                                     <div class="col-5">
-                                        <button type="button" class="btn btn-outline-success btn-block" ng-click="addshelf()"><i class="fa fa-folder-plus"> Add Users </i></button>
+                                        <button type="button" class="btn btn-outline-success btn-block" ng-click="adduser()"><i class="fa fa-folder-plus"> Add Users </i></button>
                                     </div>
                                 </div>
                             </div>
@@ -62,7 +57,7 @@
                                             <th class="col-3">Date</th>
                                             <th class="col-3">Full Name</th>
                                             <th class="col-4">Email</th>
-                                            <th>Controls</th>
+                                            <th>Role</th>
                                         </tr>
                                     </thead>
                                     <tbody dir-paginate="user in users |  filter:search | itemsPerPage: pageSize">
@@ -70,11 +65,7 @@
                                             <td>{{user.timstamp | date:'MM/dd/yyyy'}}</td>
                                             <td>{{user.fullname}}</td>
                                             <td>{{user.email}}</td>
-                                            <td>
-
-                                                <button type="button" class="btn btn-primary btn-sm" ng-click="">&nbsp;&nbsp;EDIT&nbsp;&nbsp;</button>
-                                                <button type="button" class="btn btn-danger btn-sm" ng-click="">DELETE</button>
-                                            </td>
+                                            <td>{{user.role}}</td>
                                         </tr>
 
                                     </tbody>
@@ -104,7 +95,7 @@
 
 </div>
 
-<div class="modal fade" id="modal-xl">
+<div class="modal fade" id="adduser">
     <div class="modal-dialog ">
         <div class="modal-content">
 
@@ -114,14 +105,32 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Shelf:</label>
-                                    <input type="text" ng-model="shelf" class="form-control" placeholder="Enter ...">
+                                    <label>Full Name:</label>
+                                    <input type="text" ng-model="fullname" class="form-control" placeholder="Enter ...">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label>Roll Number:</label>
-                                    <input type="text" ng-model="rollnumber" class="form-control" placeholder="Enter ...">
+                                    <label>Email:</label>
+                                    <input type="text" ng-model="email" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Password:</label>
+                                    <input type="password" ng-model="password" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>role:</label>
+
+                                    <select class="custom-select rounded-0" ng-model="role">
+                                        <option value="" selected disabled>Select</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="manager">Manager</option>
+                                        <option value="viewer">Viewer</option>
+                                      </select>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +140,7 @@
 
             <div class="modal-footer justify-content-between hidef">
                 <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
-                <button type="button" class="btn btn-primary" ng-click="saveshelf();">SAVE</button>
+                <button type="button" class="btn btn-primary" ng-click="saveuser();">SAVE</button>
             </div>
         </div>
         <!-- /.modal-content -->

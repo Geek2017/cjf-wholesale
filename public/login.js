@@ -37,6 +37,8 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
                 let item = childSnapshot.val();
                 item.key = childSnapshot.key;
 
+                console.log(item)
+
                 if (item.email) {
 
                     const pwd0 = item.password;
@@ -53,6 +55,7 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
 
                         setTimeout(() => {
                             sessionStorage.setItem('stat', 1)
+                            sessionStorage.setItem('role', item.role)
 
                             window.location.href = "index.html"
                         }, 1000);

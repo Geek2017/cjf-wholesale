@@ -29,6 +29,9 @@ angular
             }).when('/users', {
                 templateUrl: 'views/users.html',
                 controller: 'usersCtrl'
+            }).when('/customers', {
+                templateUrl: 'views/customer.html',
+                controller: 'customersCtrl'
             })
 
     });

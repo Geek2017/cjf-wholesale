@@ -17,6 +17,10 @@
 
     <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
 
+    <link rel="stylesheet" href="./plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+
+    <link rel="stylesheet" href="./plugins/toastr/toastr.min.css">
+
 
     <script src="./dist/js/angular.js"></script>
     <script src="./dist/js/angular-route.js"></script>
@@ -119,13 +123,13 @@
 
                         <li class="nav-header">Modules</li>
 
-                        <li class="nav-item">
+                        <li class="nav-item storage">
                             <a href="#storage" class="nav-link">
                                 <i class="nav-icon fas fa-warehouse text-white"></i>
                                 <p class="text">Storage</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item material">
 
                             <a href="#material" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-table text-info"></i>
@@ -134,24 +138,23 @@
 
 
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item tags">
                             <a href="#tag" class="nav-link">
                                 <i class="nav-icon fas fa-tags text-purple"></i>
-
                                 <p class="text">Tags</p>
                             </a>
                         </li>
 
 
 
-                        <li class="nav-item">
+                        <li class="nav-item lading">
                             <a href="#billsoflading" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-file-invoice-dollar text-pink"></i>
                                 <p>Bills of Lading</p>
                             </a>
                         </li>
 
-                        <li class="nav-item">
+                        <li class="nav-item shelf">
                             <a href="#shelf" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-boxes text-orange"></i>
                                 <p>
@@ -159,15 +162,23 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="#users" class="nav-link">
-                                <i class="nav-icon fas fa-solid fa-user text-red"></i>
+                        <li class="nav-item customers">
+                            <a href="#customers" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-user-friends text-red"></i>
                                 <p>
                                     Customers
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item users">
+                            <a href="#users" class="nav-link">
+                                <i class="nav-icon fas fa-solid fa-user text-gray"></i>
+                                <p>
+                                    Users
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item invoices">
                             <a href="#invoices" class="nav-link">
                                 <i class="nav-icon fas fa-solid fa-money-bill text-green"></i>
                                 <p>
@@ -221,6 +232,9 @@
     <script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
     <script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
 
+    <script src="./plugins/toastr/toastr.min.js"></script>
+    <script src="./plugins/sweetalert2/sweetalert2.min.js"></script>
+
     <!-- ChartJS -->
     <script src="plugins/chart.js/Chart.min.js"></script>
 
@@ -242,7 +256,11 @@
     <script src='./controller/billsofladingCtrl.js'></script>
     <script src='./controller/shelfCtrl.js'></script>
     <script src='./controller/invoicesCtrl.js'></script>
+
+    <script src='./controller/customersCtrl.js'></script>
+
     <script src='./controller/usersCtrl.js'></script>
+
 
 </body>
 

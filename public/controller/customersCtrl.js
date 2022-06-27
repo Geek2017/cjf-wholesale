@@ -1,4 +1,5 @@
-angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
+angular.module('cjfw').controller('customersCtrl', function($scope, $timeout) {
+
 
     var Toast = Swal.mixin({
         toast: true,
@@ -7,7 +8,7 @@ angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
         timer: 3000
     });
 
-    firebase.database().ref('/users/').orderByChild('date').on("value", function(snapshot) {
+    firebase.database().ref('/customer/').orderByChild('date').on("value", function(snapshot) {
         $timeout(function() {
             $scope.$apply(function() {
 
@@ -26,7 +27,7 @@ angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
 
                 });
 
-                $scope.users = returnArr;
+                $scope.customers = returnArr;
 
                 console.log(returnArr);
 
@@ -34,34 +35,35 @@ angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
         })
     });
 
-    $scope.adduser = function() {
 
-        $('#adduser').modal('toggle');
+    $scope.addcust = function() {
 
-        $scope.saveuser = function() {
-            var uid = firebase.database().ref().child('/users').push().key;
+        $('#addcust').modal('toggle');
+        $scope.savecust = function() {
+            var uid = firebase.database().ref().child('/customer').push().key;
 
             var storage = {
                 timstamp: firebase.database.ServerValue.TIMESTAMP,
-                fullname: $scope.fullname,
-                email: $scope.email,
-                password: $scope.password,
-                role: $scope.role
+                cfname: $scope.cfname,
+                clname: $scope.clname,
+                ccomname: $scope.ccomname,
+                ccontact: $scope.ccontact,
+                comadd: $scope.comadd
             }
 
 
             var updates = {};
-            updates['/users/' + uid] = storage;
+            updates['/customer/' + uid] = storage;
             firebase.database().ref().update(updates);
-
-            console.log(updates)
 
             if (updates) {
                 Toast.fire({
                     icon: 'success',
                     title: 'Data saved'
-                }, $('#adduser').modal('toggle'))
-
+                })
+                setTimeout(() => {
+                    $('#addcust').modal('toggle');
+                }, 3000);
             }
         }
 

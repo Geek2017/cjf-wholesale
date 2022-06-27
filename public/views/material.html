@@ -25,9 +25,10 @@
     <!-- Main content -->
     <section class="content ">
         <div class="container-fluid">
+            <label for="">Date Filter :</label>
             <div class="row">
                 <!-- Left col -->
-                <div class="col-md-6">
+                <div class="col-md-6" style="margin: 0.5%;">
                     <div class="row">
                         <div class="">
                             <span class="badge badge-success">FROM:</span>
@@ -55,7 +56,14 @@
                             <div class="card-tools float-right">
                                 <div class="row">
                                     <div class="col-12">
-                                        <input type="text" ng-model="search" class="form-control" placeholder="Find...">
+                                        <label for="">
+                                        <div class="input-group date" id="reservationdate" data-target-input="nearest">
+                                            <input type="text" class="form-control datetimepicker-input" ng-model="search" data-target="#reservationdate">
+                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+                                                <div class="input-group-text"> <i class="fas fa-search fa-fw"></i></div>
+                                            </div>
+                                        </div>
+                                    </label>
                                     </div>
                                 </div>
                             </div>
@@ -96,7 +104,7 @@
                                             <td>{{tag.Description}}</td>
                                             <td>
                                                 <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">EDIT</button>
-
+                                                <button type="button" class="btn btn-success btn-sm" ng-click="viewpdata(tag)">VIEW</button>
                                             </td>
                                         </tr>
 
@@ -128,6 +136,78 @@
 </div>
 
 <div class="modal fade" id="modal-xl">
+    <div class="modal-dialog modal-xl" style="width: 700px;">
+        <div class="modal-content">
+            <div id="pmodal" class="modal-body">
+
+                <table class="table m-0">
+                    <thead>
+                        <tr>
+                            <th colspan="2">
+                                <h1 class="text-center" style="margin-left: 20%;"><strong><input type="text" class="form-control form-control-border text-center PONumber" value="{{PONumber}}" style="width: 300px;font-size: 50px;"> </strong></h1>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-left pleft" style="font-size: 40px;  border: none;">
+                                <input type="text" class="form-control form-control-border text-center sidemark" value="{{sidemark}}" style="width: 200px;font-size: 30px;">
+                            </td>
+                            <td class="float-right" style="font-size: 40px; border: none;">
+                                <input type="text" class="form-control form-control-border text-center PONumber" value="{{PONumber}}" style="width: 200px;font-size: 30px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left pleft" style="font-size: 40px;  border: none;">
+                                <input type="text" class="form-control form-control-border text-center Carrier" value="{{Carrier}}" style="width: 200px;font-size: 30px;">
+                            </td>
+                            <td class="float-right" style="font-size: 40px; border: none;">
+                                <input type="text" class="form-control form-control-border text-center MaterialType" value="{{MaterialType}}" style="width: 200px;font-size: 30px;">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-left pleft" style="font-size: 40px;  border: none;">
+                                <input type="text" class="form-control form-control-border text-center Carrier" value="{{size}}" style="width: 200px;font-size: 30px;">
+                            </td>
+                            <td class="float-right" style="font-size: 40px; border: none;">
+                                <input type="text" class="form-control form-control-border text-center MaterialType" value="{{recvdate | date:'MM/dd/yyyy'}}" style="width: 200px;font-size: 30px;">
+                            </td>
+
+
+                        </tr>
+                        <tr>
+
+
+                            <td class="text-left pleft" style="font-size: 40px;  border: none;">
+                                <input type="text" class="form-control form-control-border text-center Carrier" value="{{OrderNumber}}" style="width: 200px;font-size: 30px;">
+                                <br>
+                                <input type="text" class="form-control form-control-border text-center Carrier" value="{{Store}}" style="width: 200px;font-size: 30px;">
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2">
+                                <center>
+                                    <hr>
+                                    <div id="container">
+                                        <div id="barcode"></div>
+                                    </div>
+                                </center>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="modal-footer justify-content-between hidef">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-success" ng-click="updatedate();">UPDATE</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modalview">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
 
@@ -163,7 +243,7 @@
                                 <center>
                                     <hr>
                                     <div id="container">
-                                        <div id="barcode"></div>
+                                        <div id="barcodeview"></div>
                                     </div>
                                 </center>
                             </td>
@@ -180,5 +260,4 @@
         </div>
         <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>
