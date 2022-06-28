@@ -46,6 +46,11 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
                         sessionStorage.setItem('useremail', authData.email)
                         window.location.href = 'index.html'
                     }, 1000);
+                } else {
+                    Toast.fire({
+                        icon: 'error',
+                        title: ' EMAIL NOT VERIFIED'
+                    })
                 }
             }).catch(function(error) {
                 Toast.fire({
