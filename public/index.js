@@ -1,29 +1,41 @@
-angular.module('cjfw').controller('indexCtrl', function($scope, $timeout) {
+angular.module('cjfw').controller('indexCtrl', function($scope, $location) {
 
-    const session = sessionStorage.getItem('stat');
-    var role = sessionStorage.getItem('role');
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log(user)
 
-    if (!session) {
-        window.location.href = "login.html"
-    }
+            firebase.database().ref('/users').orderByChild('email').equalTo(user.email).on("value", function(snapshot) {
+                $scope.$apply(function() {
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
 
-    if (role == 'manager') {
-        $('.invoices').remove()
-    }
+                        console.log(item.role)
+
+                        if (item.role == 'manager') {
+                            $('.invoices').remove()
+                        }
+
+                        if (item.role == 'viewer') {
+                            $('.storage').remove();
+                            $('.invoices').remove();
+                            $('.users').remove();
+                            $('.customers').remove();
+                        }
+                    });
+                });
+            });
+
+        } else {
+            window.location.href = './login.html';
+        }
+    });
 
 
-
-
-    if (role == 'viewer') {
-        $('.storage').hide();
-        $('.invoices').hide();
-        $('.users').hide();
-        $('.customers').hide();
-    }
 
     $scope.logout = function() {
-        sessionStorage.clear();
-        window.location.reload();
+        localStorage.clear();
+        window.location.href = './login.html';
     }
 
 });

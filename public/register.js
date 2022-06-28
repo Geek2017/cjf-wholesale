@@ -1,16 +1,7 @@
 angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
-    var config = {
-        apiKey: "AIzaSyCAG1P1ioOD5tdaxjPWcphdUyksk55uJ9k",
-        authDomain: "cjfwholesale.firebaseapp.com",
-        databaseURL: "https://cjfwholesale-default-rtdb.firebaseio.com/",
-        projectId: "cjfwholesale"
-    };
 
-    firebase.initializeApp(config);
 
-    $scope.backlogin = function() {
-        window.location.href = "login.html"
-    }
+
 
     var Toast = Swal.mixin({
         toast: true,
@@ -21,59 +12,62 @@ angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
 
 
 
-    $scope.registeruser = function() {
-        console.log(1)
+    $scope.signup = function() {
 
-        var uid = firebase.database().ref().child('/users').push().key;
+        console.log($scope.password, $scope.email)
 
-        var users = {
-            timstamp: firebase.database.ServerValue.TIMESTAMP,
-            fullname: $scope.fullname,
-            password: $scope.password,
-            email: $scope.email
-        }
+        if ($scope.password && $scope.email) {
+            firebase.auth().createUserWithEmailAndPassword($scope.password, $scope.email)
+                .then(userData => {
+                    userData.user.sendEmailVerification();
+                    console.log(userData);
 
-        console.log(users)
+                    if (userData.user.email) {
+                        try {
+                            var uid = firebase.database().ref().child('/users').push().key;
 
-        try {
-            var updates = {};
-            updates['/users/' + uid] = users;
-            firebase.database().ref().update(updates);
+                            var user = {
+                                date: firebase.database.ServerValue.TIMESTAMP,
+                                email: $scope.email,
+                                fullname: $scope.fullname,
+                                role: 'viewer'
+                            }
+
+                            var updates = {};
+                            updates['/users/' + uid] = user;
+                            firebase.database().ref().update(updates);
+
+                            if (updates) {
+                                console.log(updates)
+                                Toast.fire({
+                                    icon: 'success',
+                                    title: 'Register succesful, Kindly wait for admin to activate your account'
+                                })
+                                setTimeout(() => {
+                                    window.location.href = 'login.html'
+                                }, 3000);
 
 
-            if (updates) {
-                console.log(updates)
+                            }
+                        } catch (error) {
 
-                Toast.fire({
-                        icon: 'success',
-                        title: 'Register succesful, Kindly wait for admin to activate your account'
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'Ow something went wrong: ' + error
+                            })
+                        }
+                    }
+
+                })
+                .catch(err => {
+                    console.log(err);
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Ow something went wrong: ' + err
                     })
-                    // setTimeout(() => {
-                    //     window.location.href = "login.html"
-                    // }, 2000);
+                });
 
-            }
-        } catch (error) {
-            Toast.fire({
-                icon: 'error',
-                title: error
-            })
         }
-
-
-        // firebase.database().ref('/users').orderByChild('email').equalTo(email).on("value", function(snapshot) {
-        //     var arr = [];
-
-        //     console.log(snapshot.val())
-
-        //     snapshot.forEach(childSnapshot => {
-        //         let item = childSnapshot.val();
-        //         item.key = childSnapshot.key;
-
-        //         arr.push(item[0]);
-        //     });
-        // });
-
 
     }
 });

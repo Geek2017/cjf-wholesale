@@ -24,52 +24,36 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
 
     $(document).on('keypress', function(e) {
         if (e.which == 13) {
-            $scope.signin();
+            $scope.login();
         }
     });
 
+    $scope.login = function() {
 
-    $scope.signin = function() {
-        console.log('logging in..')
-        firebase.database().ref('/users').orderByChild('email').equalTo($scope.email).on("value", function(snapshot) {
+        console.log($scope.email, $scope.password);
 
-            snapshot.forEach(childSnapshot => {
-                let item = childSnapshot.val();
-                item.key = childSnapshot.key;
+        firebase.auth().signInWithEmailAndPassword($scope.email, $scope.password)
+            .then(function(authData) {
+                console.log(authData)
+                if (authData.emailVerified) {
 
-                console.log(item)
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Authenticated'
+                    })
 
-                if (item.email) {
-
-                    const pwd0 = item.password;
-                    const pwd1 = $scope.password;
-
-                    console.log(pwd0, pwd1);
-                    if (pwd0 == pwd1) {
-
-
-                        Toast.fire({
-                            icon: 'success',
-                            title: 'Authenticated'
-                        })
-
-                        setTimeout(() => {
-                            sessionStorage.setItem('stat', 1)
-                            sessionStorage.setItem('role', item.role)
-
-                            window.location.href = "index.html"
-                        }, 1000);
-
-                    } else {
-                        Toast.fire({
-                            icon: 'error',
-                            title: ' Ivalid Entry Check Your Inputs'
-                        })
-                    }
+                    setTimeout(() => {
+                        sessionStorage.setItem('useremail', authData.email)
+                        window.location.href = 'index.html'
+                    }, 1000);
                 }
+            }).catch(function(error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Ow something went wrong: ' + error
+                })
 
-            });
-        });
+            })
     }
 
 });
