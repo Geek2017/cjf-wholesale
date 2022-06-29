@@ -34,7 +34,7 @@ angular.module('cjfw').controller('indexCtrl', function($scope, $location) {
 
 
     $scope.logout = function() {
-        localStorage.clear();
+        firebase.auth().signOut();
         window.location.href = './login.html';
     }
 

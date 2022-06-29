@@ -46,12 +46,17 @@
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input autocomplete="off" type="password" class="form-control" ng-model="password" placeholder="Password">
+                    <input autocomplete="off" type="password" class="form-control pass" ng-model="password" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>
                         </div>
                     </div>
+
+                </div>
+                <div class="input-group mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" ng-click="showpass()">
+                    <label class="form-check-label" for="exampleCheck2">Show Password</label>
                 </div>
                 <div class="row">
 

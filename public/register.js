@@ -11,6 +11,11 @@ angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
     });
 
 
+    $scope.backlogin = function() {
+        window.location.href = "login.html"
+    }
+
+
 
     $scope.signup = function() {
 
@@ -41,7 +46,7 @@ angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
                                 console.log(updates)
                                 Toast.fire({
                                     icon: 'success',
-                                    title: 'Register succesful, Kindly wait for admin to activate your account'
+                                    title: 'Register succesful, check your email'
                                 })
                                 setTimeout(() => {
                                     window.location.href = 'login.html'

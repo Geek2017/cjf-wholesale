@@ -28,6 +28,16 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
         }
     });
 
+
+    $scope.showpass = function() {
+        var passInput = $(".pass");
+        if (passInput.attr('type') === 'password') {
+            passInput.attr('type', 'text');
+        } else {
+            passInput.attr('type', 'password');
+        }
+    }
+
     $scope.login = function() {
 
         console.log($scope.email, $scope.password);
