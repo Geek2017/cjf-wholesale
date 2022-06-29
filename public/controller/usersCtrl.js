@@ -39,30 +39,61 @@ angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
         $('#adduser').modal('toggle');
 
         $scope.saveuser = function() {
-            var uid = firebase.database().ref().child('/users').push().key;
 
-            var storage = {
-                timstamp: firebase.database.ServerValue.TIMESTAMP,
-                fullname: $scope.fullname,
-                email: $scope.email,
-                password: $scope.password,
-                role: $scope.role
-            }
+            console.log($scope.password, $scope.email)
 
 
-            var updates = {};
-            updates['/users/' + uid] = storage;
-            firebase.database().ref().update(updates);
+            var secondaryApp = firebase.initializeApp(config, "Secondary");
 
-            console.log(updates)
+            secondaryApp.auth().createUserWithEmailAndPassword($scope.password, $scope.email).then(function(firebaseUser) {
 
-            if (updates) {
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Data saved'
-                }, $('#adduser').modal('toggle'))
+                console.log(firebaseUser.uid);
 
-            }
+                secondaryApp.auth().signOut();
+
+                try {
+
+                    var uid = firebase.database().ref().child('/users').push().key;
+
+                    var storage = {
+
+                        timestamp: firebase.database.ServerValue.TIMESTAMP,
+                        fullname: $scope.fullname,
+                        email: $scope.email,
+                        role: $scope.role
+                    }
+
+                    var updates = {};
+                    updates['/users/' + uid] = storage;
+                    firebase.database().ref().update(updates);
+
+                    console.log(updates)
+
+                    if (updates) {
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'User Created Successfully!'
+                        })
+
+                        setTimeout(() => {
+                            $('#adduser').modal('toggle');
+                            window.location.reload();
+                        }, 2000);
+
+                    }
+
+                } catch (error) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'ERROR:' + error
+                    })
+                }
+
+            });
+
+
+
         }
 
 

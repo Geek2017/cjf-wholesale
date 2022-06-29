@@ -62,7 +62,7 @@
                                     </thead>
                                     <tbody dir-paginate="user in users |  filter:search | itemsPerPage: pageSize">
                                         <tr>
-                                            <td>{{user.timstamp | date:'MM/dd/yyyy'}}</td>
+                                            <td>{{user.timestamp | date:'MM/dd/yyyy'}}</td>
                                             <td>{{user.fullname}}</td>
                                             <td>{{user.email}}</td>
                                             <td>{{user.role}}</td>

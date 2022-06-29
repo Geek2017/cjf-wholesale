@@ -44,8 +44,8 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
 
         firebase.auth().signInWithEmailAndPassword($scope.email, $scope.password)
             .then(function(authData) {
-                console.log(authData)
-                if (authData.emailVerified) {
+                console.log(authData.user);
+                if (authData.user) {
 
                     Toast.fire({
                         icon: 'success',
@@ -63,10 +63,12 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
                     })
                 }
             }).catch(function(error) {
-                Toast.fire({
-                    icon: 'error',
-                    title: 'Ow something went wrong: ' + error
-                })
+                // Toast.fire({
+                //     icon: 'error',
+                //     title: 'Ow something went wrong: ' + error
+                // })
+
+                console.log(error)
 
             })
     }

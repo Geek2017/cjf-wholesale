@@ -45,12 +45,12 @@ angular.module('cjfw').controller('registerCtrl', function($scope, $timeout) {
                             if (updates) {
                                 console.log(updates)
                                 Toast.fire({
-                                    icon: 'success',
-                                    title: 'Register succesful, check your email'
-                                })
-                                setTimeout(() => {
-                                    window.location.href = 'login.html'
-                                }, 3000);
+                                        icon: 'success',
+                                        title: 'Register succesful, check your email'
+                                    })
+                                    // setTimeout(() => {
+                                    //     window.location.href = 'login.html'
+                                    // }, 3000);
 
 
                             }
