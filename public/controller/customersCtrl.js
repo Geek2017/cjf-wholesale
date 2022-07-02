@@ -1,6 +1,5 @@
 angular.module('cjfw').controller('customersCtrl', function($scope, $timeout) {
 
-
     var Toast = Swal.mixin({
         toast: true,
         position: 'middle-center',
@@ -34,7 +33,6 @@ angular.module('cjfw').controller('customersCtrl', function($scope, $timeout) {
             });
         })
     });
-
 
     $scope.addcust = function() {
 

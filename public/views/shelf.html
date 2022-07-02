@@ -33,13 +33,16 @@
                             <span class="badge badge-success">FROM:</span>
                         </div>
                         <div class="col-3">
-                            <input type="date" class="form-control">
+                            <input type="date" ng-model="datefrom" class="form-control" ng-mouseleave="from()">
                         </div>
                         <div class="">
                             <span class="badge badge-danger">UNTIL:</span>
                         </div>
                         <div class="col-3">
-                            <input type="date" class="form-control">
+                            <input type="date" ng-model="dateuntil" class="form-control" ng-mouseleave="until()">
+                        </div>
+                        <div class="col-3">
+                            <button type="button" class="btn btn-outline-info btn-block" ng-click="applyfilter()" style="width: 100px;">Apply <i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </div>
