@@ -45,6 +45,8 @@ angular.module('cjfw').controller('indexCtrl', function($scope, $location) {
             $('.invoices').hide();
             $('.users').hide();
             $('.customers').hide();
+            $('.tags').hide();
+            $('.shelf').hide();
         }
     }
 

@@ -56,12 +56,13 @@
                                 <table class="table m-0">
                                     <thead>
                                         <tr>
-                                            <th class="">Date</th>
-                                            <th class="">Company Name</th>
-                                            <th class="">First Name</th>
+                                            <th class="col-2">Date</th>
+                                            <th class="col-2">Company Name</th>
+                                            <th class="col-2">First Name</th>
                                             <th class="">Last Name</th>
                                             <th class="">Contact #</th>
                                             <th class="">Address</th>
+                                            <th class="">Controls</th>
                                         </tr>
                                     </thead>
                                     <tbody dir-paginate="customer in customers |  filter:search | itemsPerPage: pageSize">
@@ -72,7 +73,10 @@
                                             <td>{{customer.clname}}</td>
                                             <td>{{customer.ccontact}}</td>
                                             <td>{{customer.comadd}}</td>
-
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="edit(customer)">EDIT CUSTOMER</button>
+                                                <button type="button" class="btn btn-danger btn-sm" ng-click="delete(customer)">DEL. CUSTOMER</button>
+                                            </td>
                                         </tr>
 
                                     </tbody>
@@ -152,5 +156,54 @@
         </div>
         <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="editcustomer">
+    <div class="modal-dialog ">
+        <div class="modal-content">
+            <div id="pmodal" class="modal-body ">
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Firts Name:</label>
+                                    <input type="text" ng-model="cfname" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Last Name:</label>
+                                    <input type="text" ng-model="clname" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Company Name:</label>
+                                    <input type="text" ng-model="ccomname" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-group">
+                                    <label>Contact #:</label>
+                                    <input type="text" ng-model="ccontact" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>Company Address:</label>
+                                    <textarea class="form-control" ng-model="comadd" rows="3" placeholder="Enter ..." spellcheck="false"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer justify-content-between hidef">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE </button>
+                <button type="button" class="btn btn-primary" ng-click="update();">UPDATE</button>
+            </div>
+        </div>
+    </div>
 </div>
