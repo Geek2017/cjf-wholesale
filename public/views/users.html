@@ -56,8 +56,9 @@
                                         <tr>
                                             <th class="col-3">Date</th>
                                             <th class="col-3">Full Name</th>
-                                            <th class="col-4">Email</th>
+                                            <th>Email</th>
                                             <th>Role</th>
+                                            <th>Control</th>
                                         </tr>
                                     </thead>
                                     <tbody dir-paginate="user in users |  filter:search | itemsPerPage: pageSize">
@@ -66,6 +67,11 @@
                                             <td>{{user.fullname}}</td>
                                             <td>{{user.email}}</td>
                                             <td>{{user.role}}</td>
+                                            <td>
+                                                <button type="button" class="btn btn-success btn-sm" ng-click="reset(user)">RESET USER</button>
+                                                <button type="button" class="btn btn-primary btn-sm" ng-click="edit(user)">EDIT USER</button>
+                                                <button type="button" class="btn btn-danger btn-sm" ng-click="delete(user)">DELETE USER</button>
+                                            </td>
                                         </tr>
 
                                     </tbody>
@@ -141,6 +147,54 @@
             <div class="modal-footer justify-content-between hidef">
                 <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
                 <button type="button" class="btn btn-primary" ng-click="saveuser();">SAVE</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="edituser" style="padding-right: 18%!important;padding-top: 10%!important;">
+    <div class="modal-dialog ">
+        <div class="modal-content" style="width: 800px;">
+
+            <div id="pmodal" class="modal-body">
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Full Name:</label>
+                                    <input type="text" ng-model="efullname" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>Email:</label>
+                                    <input type="text" ng-model="eemail" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>role:</label>
+
+                                    <select class="custom-select rounded-0" ng-model="erole">
+                                        <option value="" selected disabled>Select</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="manager">Manager</option>
+                                        <option value="viewer">Viewer</option>
+                                      </select>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer justify-content-between hidef">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-primary" ng-click="update();">UPDATE</button>
             </div>
         </div>
         <!-- /.modal-content -->

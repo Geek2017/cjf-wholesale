@@ -19,6 +19,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="./dist/css/adminlte.min.css">
 
+    <script src="./plugins/jquery/jquery.min.js"></script>
+
     <script src="./dist/js/angular.js"></script>
     <script src="./dist/js/angular-route.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
@@ -34,33 +36,55 @@
                 <a href="#" class="h1"><b>CJF</b> | WholeSale</a>
             </div>
             <div class="card-body">
-                <p class="login-box-msg">Reset your password</p>
+                <p class="login-box-msg">Key in your email:</p>
 
+                <form id="form">
+                    <div class="input-group mb-3">
 
-                <div class="input-group mb-3">
-                    <input autocomplete="off" type="email" class="form-control" ng-model="email" placeholder="Email">
-                    <div class="input-group-append">
-                        <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                        <!-- <div class="field">
+                            <input type="text" class="form-control" name="from_name" value="inventoryfis@gmail.com" id="from_name">
+                        </div> -->
+
+                        <input type="text" autocomplete="off" type="email" class="form-control" name="to_name" value="" id="to_name">
+
+                        <div class="field">
+                            <input type="text" class="form-control" name="message" value="" id="message" hidden>
+                        </div>
+                        <!-- <div class="field">
+                            <input type="text" class="form-control" name="reply_to" value="inventoryfis@gmail.com" id="reply_to">
+                        </div> -->
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="row">
 
 
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-                    <!-- /.col -->
-                    <div class="col-6">
-                        <button class="btn btn-primary btn-block" ng-click="login()">Sign In</button>
+                    <script type="text/javascript">
+                        emailjs.init('user_sNpLqvGWjY804N36vRsSp')
+                    </script>
+
+
+                    <div class="row">
+
+
+
+                        <!-- /.col -->
+                        <div class="col-6">
+                            <button class="btn btn-primary btn-block" ng-click="login()">Sign In</button>
+                        </div>
+
+                        <div class="col-6">
+                            <button class="btn btn-danger btn-block" type="submit" id="button">Proceed <i class="fas fa-spinner fa-spin"></i></button>
+                            <!-- <input class="btn btn-danger btn-block" type="submit" id="button" value="Proceed"> -->
+                        </div>
+
+                        <!-- /.col -->
                     </div>
-
-                    <div class="col-6">
-                        <button class="btn btn-danger btn-block" ng-click="reset()">Proceed</button>
-                    </div>
-                    <!-- /.col -->
-                </div>
-
+                </form>
 
 
                 <!-- /.social-auth-links -->

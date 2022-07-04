@@ -10,12 +10,23 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
     let dfrom;
     let duntil;
 
+    $scope.datefrom = new Date();
+
+    $scope.dateuntil = new Date();
+
     $scope.from = function() {
 
 
         var dfromiso = new Date($scope.datefrom).toISOString();
         console.log(dfromiso);
         dfrom = dfromiso;
+
+        if ($scope.datefrom > $scope.dateuntil) {
+            Toast.fire({
+                icon: 'error',
+                title: 'DATE FROM MUST > UNTIL DATE'
+            })
+        }
     }
 
     $scope.until = function() {
@@ -26,6 +37,13 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
         duntil = duntiliso;
 
         console.log(dfrom, duntil)
+
+        if ($scope.datefrom > $scope.dateuntil) {
+            Toast.fire({
+                icon: 'error',
+                title: 'DATE FROM MUST > UNTIL DATE'
+            })
+        }
     }
 
     $scope.applyfilter = function() {

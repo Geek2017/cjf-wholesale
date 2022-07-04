@@ -1,14 +1,6 @@
 angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
 
-    var config = {
-        apiKey: "AIzaSyCAG1P1ioOD5tdaxjPWcphdUyksk55uJ9k",
-        authDomain: "cjfwholesale.firebaseapp.com",
-        databaseURL: "https://cjfwholesale-default-rtdb.firebaseio.com/",
-        projectId: "cjfwholesale"
-    };
-
-    firebase.initializeApp(config);
-
+    $('.fa-spin').hide()
 
     $scope.register = function() {
         window.location.href = "register.html"
@@ -42,35 +34,77 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
 
         console.log($scope.email, $scope.password);
 
-        firebase.auth().signInWithEmailAndPassword($scope.email, $scope.password)
-            .then(function(authData) {
-                console.log(authData.user);
-                if (authData.user) {
+        $('.fa-spin').show()
+        $('.singin').prop("disabled", true);
 
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Authenticated'
-                    })
+        firebase.database().ref('/users').orderByChild('email').equalTo($scope.email).on("value", function(snapshot) {
+            $timeout(function() {
+                $scope.$apply(function() {
 
-                    setTimeout(() => {
-                        sessionStorage.setItem('useremail', authData.email)
-                        window.location.href = 'index.html'
-                    }, 1000);
-                } else {
-                    Toast.fire({
-                        icon: 'error',
-                        title: ' EMAIL NOT VERIFIED'
-                    })
-                }
-            }).catch(function(error) {
-                // Toast.fire({
-                //     icon: 'error',
-                //     title: 'Ow something went wrong: ' + error
-                // })
 
-                console.log(error)
+                    snapshot.forEach(childSnapshot => {
+                        let item = childSnapshot.val();
+                        item.key = childSnapshot.key;
 
+                        console.log(item)
+
+                        if (item.password === $scope.password) {
+                            localStorage.setItem('auth', 1);
+                            localStorage.setItem('role', item.role);
+
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'Authenticated Hurray!'
+                            })
+
+                            setTimeout(() => {
+                                window.location.href = 'index.html'
+                            }, 2000);
+
+
+                        } else {
+                            Toast.fire({
+                                icon: 'error',
+                                title: 'INVALID CREDENTIALS'
+                            })
+                        }
+
+                    });
+                });
             })
+        });
+
+
+
+        // firebase.auth().signInWithEmailAndPassword($scope.email, $scope.password)
+        //     .then(function(authData) {
+        //         console.log(authData.user);
+        //         if (authData.user) {
+
+        //             Toast.fire({
+        //                 icon: 'success',
+        //                 title: 'Authenticated'
+        //             })
+
+        //             setTimeout(() => {
+        //                 sessionStorage.setItem('useremail', authData.email)
+        //                 window.location.href = 'index.html'
+        //             }, 1000);
+        //         } else {
+        //             Toast.fire({
+        //                 icon: 'error',
+        //                 title: ' EMAIL NOT VERIFIED'
+        //             })
+        //         }
+        //     }).catch(function(error) {
+        //         // Toast.fire({
+        //         //     icon: 'error',
+        //         //     title: 'Ow something went wrong: ' + error
+        //         // })
+
+        //         console.log(error)
+
+        //     })
     }
 
 });

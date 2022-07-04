@@ -1,24 +1,48 @@
 angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout) {
 
+
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'middle-center',
+        showConfirmButton: false,
+        timer: 4000
+    });
+
     let dfrom;
     let duntil;
 
-    $scope.from = function() {
+    $scope.datefrom = new Date();
 
+    $scope.dateuntil = new Date();
+
+    $scope.from = function() {
 
         var dfromiso = new Date($scope.datefrom).toISOString();
         console.log(dfromiso);
         dfrom = dfromiso;
+
+        if ($scope.datefrom > $scope.dateuntil) {
+            Toast.fire({
+                icon: 'error',
+                title: 'DATE FROM MUST > UNTIL DATE'
+            })
+
+        } else {
+
+        }
     }
 
     $scope.until = function() {
-
-
         var duntiliso = new Date($scope.dateuntil).toISOString();
         console.log(duntiliso);
         duntil = duntiliso;
 
-        console.log(dfrom, duntil)
+        if ($scope.datefrom > $scope.dateuntil) {
+            Toast.fire({
+                icon: 'error',
+                title: 'DATE FROM MUST > UNTIL DATE'
+            })
+        }
     }
 
     $scope.applyfilter = function() {
@@ -70,7 +94,6 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
         });
     }
 
-
     firebase.database().ref('/storage/').orderByChild('date').on("value", function(snapshot) {
         $timeout(function() {
             $scope.$apply(function() {
@@ -79,13 +102,17 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
 
                 let ndata;
 
+                console.log(snapshot.numChildren())
 
+                let repeat = snapshot.numChildren();
 
                 snapshot.forEach(childSnapshot => {
                     let item = childSnapshot.val();
                     item.key = childSnapshot.key;
 
                     console.log(item)
+
+
                     angular.forEach(item.details, function(value, key) {
                         ndata = [{
                             "date": item.date,
@@ -101,75 +128,115 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
                             "RollNumber": item.details[key]['Roll Number'],
                             "SideMark": item.details[key].SideMark,
                             "Store": item.details[key].Store,
-                            "Width": item.details[key].Width
+                            "Width": item.details[key].Width,
+                            "mdata": item.details,
+                            "file": item.file,
+                            "key": item.key
                         }]
 
                         returnArr.push(ndata[0]);
                     });
 
+
+
+
                 });
 
                 $scope.tags = returnArr;
 
-                console.log(returnArr);
+                console.log($scope.tags);
 
             });
         })
     });
 
-    $scope.printhis = function() {
-        $('#pmodal').kinziPrint({
-            importCSS: true,
-            importStyle: false,
-            loadCSS: 'dist/css/print.css'
+    $('.overlay').hide();
+
+    $scope.upload = function(tag) {
+        $('#upload').modal('toggle');
+
+        console.log(tag.key)
+
+        let uidkey = tag.key;
+
+        $("#files").change(function() {
+            var storage = firebase.storage();
+
+            var file = document.getElementById("files").files[0];
+            console.log(file);
+
+            var storageRef = firebase.storage().ref();
+
+            //dynamically set reference to the file name
+            var thisRef = storageRef.child(file.name);
+
+            //put request upload file to firebase storage
+            thisRef.put(file).then(function(snapshot) {
+                console.log(snapshot);
+            });
+
+            //get request to get URL for uploaded file
+            $('.overlay').show();
+
+
+            setTimeout(() => {
+                thisRef.getDownloadURL().then(function(url) {
+                    console.log(url);
+                    if (url) {
+
+                        var storage = {
+                            timstamp: tag.date,
+                            date: tag.date,
+                            billofland: tag.billofland,
+                            vendor: tag.vendor,
+                            details: tag.mdata,
+                            file: url
+                        }
+
+                        console.log(storage, uidkey)
+
+
+
+                        var updates = {};
+                        updates['/storage/' + uidkey] = storage;
+                        firebase.database().ref().update(updates);
+
+                        if (updates) {
+                            Toast.fire({
+                                icon: 'success',
+                                title: 'PDF UPLOADED'
+                            }, $('.overlay').hide())
+
+                            window.location.reload();
+
+                        }
+
+                    }
+                })
+            }, 5000);
+
+
         });
+
+
+
     }
 
-    $scope.getpdata = function(tag) {
-
-        $('#modal-xl').modal('toggle');
-        $scope.PONumber = tag.PONumber
-        $scope.sidemark = tag.SideMark
-        $scope.Carrier = tag.Carrier
-        $scope.MaterialType = tag.MaterialType
-        $scope.size = tag.Width + "x" + tag.Length
-        $scope.recvdate = tag.date
-        $scope.OrderNumber = tag.OrderNumber
-        $scope.Store = tag.Store
-        console.log(tag)
-        $("#barcode").barcode(
-            tag.PONumber,
-            "code39", {
-                barWidth: 4,
-                barHeight: 100,
-                fontSize: 14
+    $scope.viewpdf = function(tag) {
+        if (tag.file) {
+            var win = window.open(tag.file, '_blank');
+            if (win) {
+                win.focus();
             }
-        );
-
+        } else {
+            Toast.fire({
+                icon: 'error',
+                title: 'NO PDF UPLOADED'
+            })
+        }
     }
 
-    $scope.viewpdata = function(tag) {
 
-        $('#modalview').modal('toggle');
-        $scope.PONumber = tag.PONumber
-        $scope.sidemark = tag.SideMark
-        $scope.Carrier = tag.Carrier
-        $scope.MaterialType = tag.MaterialType
-        $scope.size = tag.Width + "x" + tag.Length
-        $scope.recvdate = tag.date
-        $scope.OrderNumber = tag.OrderNumber
-        $scope.Store = tag.Store
-        console.log(tag)
-        $("#barcode").barcode(
-            tag.PONumber,
-            "code39", {
-                barWidth: 4,
-                barHeight: 100,
-                fontSize: 14
-            }
-        );
-
-    }
 
 
 

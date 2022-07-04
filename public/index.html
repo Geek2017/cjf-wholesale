@@ -21,19 +21,19 @@
 
     <link rel="stylesheet" href="./plugins/toastr/toastr.min.css">
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.21.0/firebase-app.min.js" integrity="sha512-1ECyf3rShZeZZZhQHBDlWVe/Q1AdrsUb7KMiIOErv9wYTE2gbUov+AAkUxK4LC/6rCZzdNVtw5vETxrMH6zhFw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src='https://cdn.firebase.com/js/client/2.2.1/firebase.js'></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.21.0/firebase.js" integrity="sha512-kxxlAms/2Lu7URlRnGzsk3gI/R7eA5zWbwUyCZrsA5kG7mWisgcXqnnha6F9aW16PBhFDSj9injKx29V6k7h9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.21.0/firebase-database.min.js" integrity="sha512-b42cIKEdTSVwaU0CNYUtzSbpsTF+Xzfu13JYSKKskx3n0CaToirN2+NFB9c4/ajjJb17JuENIoso0ZnzAH+CMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
     <script src="./dist/js/angular.js"></script>
     <script src="./dist/js/angular-route.js"></script>
 
-
+    <style>
+        .toast {
+            left: 50%;
+            position: fixed;
+            transform: translate(-50%, 0px);
+            z-index: 9999;
+            top: 40%;
+        }
+    </style>
 </head>
 
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -93,7 +93,7 @@
             <!-- Brand Logo -->
             <a href="#" class="brand-link">
                 <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-                <span class="brand-text font-weight-light">CJF WholeSale</span>
+                <span class="brand-text font-weight-light"><strong class="text-danger">FIS</strong>  | <b class="text-info">INVENTORY</b> </span>
             </a>
 
             <!-- Sidebar -->
@@ -106,8 +106,8 @@
                         <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
                         <div class="input-group-append">
                             <button class="btn btn-sidebar">
-              <i class="fas fa-search fa-fw"></i>
-            </button>
+                                <i class="fas fa-search fa-fw"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

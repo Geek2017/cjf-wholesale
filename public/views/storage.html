@@ -97,8 +97,8 @@
                         </div>
 
                         <div class="card-body p-0">
-                            <div class="table-responsive card">
-                                <table class=" table m-0" id="tblstorage0">
+                            <div id="tblm" class="table-responsive card">
+                                <table id="tblstorage0" class="table m-0">
                                     <thead>
                                         <tr>
                                             <th>PO Number</th>
@@ -115,9 +115,9 @@
                                             <td><input type="text" class="form-control" placeholder="PO Number" required></td>
                                             <td><input type="text" class="form-control" placeholder="Order Number" required></td>
                                             <td><input type="text" class="form-control" placeholder="Side Mark" required></td>
-                                            <td><input type="number" class="form-control" placeholder="Width" required></td>
-                                            <td><input type="number" class="form-control" placeholder="Length" required></td>
-                                            <td><input type="text" class="form-control" placeholder="Quantity" required></td>
+                                            <td><input type="number" class="form-control val0" placeholder="Width" required></td>
+                                            <td><input type="number" class="form-control val1" placeholder="Length" required></td>
+                                            <td><input type="text" class="form-control qty" placeholder="Quantity" required></td>
                                             <td><input type="text" class="form-control" placeholder="Roll Number" required></td>
                                         </tr>
                                     </tbody>
@@ -245,7 +245,7 @@
         <div class="modal-content">
 
             <div id="pmodal" class="modal-body">
-                <table class="table m-0 madal">
+                <table class="table m-0 madal ">
                     <tbody ng-repeat="lading in ladings">
                         <tr>
                             <td colspan="2">

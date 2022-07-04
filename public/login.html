@@ -19,13 +19,13 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="./dist/css/adminlte.min.css">
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.21.0/firebase.js" integrity="sha512-kxxlAms/2Lu7URlRnGzsk3gI/R7eA5zWbwUyCZrsA5kG7mWisgcXqnnha6F9aW16PBhFDSj9injKx29V6k7h9g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.21.0/firebase-database.min.js" integrity="sha512-b42cIKEdTSVwaU0CNYUtzSbpsTF+Xzfu13JYSKKskx3n0CaToirN2+NFB9c4/ajjJb17JuENIoso0ZnzAH+CMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.21.0/firebase-auth.min.js" integrity="sha512-16mW8r8bdvOBsSy8z/EjznUqyobFbF6ukoR4xv33B/DxPkurvnn7x9wsxtR9CRF+WvYMeivniA59eI+BXOPOVA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript">
+        emailjs.init('user_sNpLqvGWjY804N36vRsSp')
+    </script>
+    <script src="plugins/jquery/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.3.1/firebase.js"></script>
 
     <script src="./dist/js/angular.js"></script>
     <script src="./dist/js/angular-route.js"></script>
@@ -37,9 +37,9 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <!-- /.login-logo -->
-        <div class="card card-outline card-primary">
+        <div class="card card-outline card-danger">
             <div class="card-header text-center">
-                <a href="#" class="h1"><b>CJF</b> | WholeSale</a>
+                <a href="#" class="h1"><b class="text-red">FIS</b> | <span class="text-info">INVENTORY</span> </a>
             </div>
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
@@ -49,7 +49,7 @@
                     <input autocomplete="off" type="email" class="form-control" ng-model="email" placeholder="Email">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-envelope"></span>
+                            <span class="fas fa-envelope text-info"></span>
                         </div>
                     </div>
                 </div>
@@ -57,25 +57,24 @@
                     <input autocomplete="off" type="password" class="form-control pass" ng-model="password" placeholder="Password">
                     <div class="input-group-append">
                         <div class="input-group-text">
-                            <span class="fas fa-lock"></span>
+                            <span class="fas fa-lock text-info"></span>
                         </div>
                     </div>
+                    <div class="input-group mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" ng-click="showpass()">
+                        <label class="form-check-label text-danger" for="exampleCheck2">Show Password</label>
+                    </div>
+                </div>
 
-                </div>
-                <div class="input-group mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" ng-click="showpass()">
-                    <label class="form-check-label" for="exampleCheck2">Show Password</label>
-                </div>
                 <div class="row">
-
                     <div class="col-6">
-                        <!-- <button class="btn btn-info btn-block" ng-click="register()">Sign Up</button> -->
-                        <a class="btn btn-warning btn-block" href="reset.html">Reset Password</a>
+                        <a class="btn btn-danger btn-block" class="text-info" href="reset.html">Reset Password</a>
                     </div>
 
                     <!-- /.col -->
                     <div class="col-6">
-                        <button class="btn btn-primary btn-block" ng-click="login()">Sign In</button>
+                        <button class="btn btn-info btn-block singin" ng-click="login()">Sign In <i class="fas fa-spinner fa-spin"></i></button>
+
                     </div>
                     <!-- /.col -->
                 </div>
@@ -102,7 +101,7 @@
     <script src="./plugins/toastr/toastr.min.js"></script>
     <script src="./plugins/sweetalert2/sweetalert2.min.js"></script>
 
-
+    <script src="./connect.js"></script>
     <script src="./login.js"></script>
 
 </body>

@@ -35,7 +35,7 @@
                             <span class="badge badge-success">FROM:</span>
                         </div>
                         <div class="col-3">
-                            <input type="date" ng-model="datefrom" class="form-control" ng-mouseleave="from()">
+                            <input type="date" ng-model="datefrom" class="form-control datefrom" ng-mouseleave="from()">
                         </div>
                         <div class="">
                             <span class="badge badge-danger">UNTIL:</span>
@@ -80,11 +80,11 @@
                                 <table class="table m-0">
                                     <thead>
                                         <tr>
-                                            <th class="col-2">Date</th>
+                                            <th class="col-3">Date</th>
                                             <th class="col-3">Bill Of Lading</th>
                                             <th class="col-2">Vendor</th>
-                                            <th class="col-2">Anexo</th>
-                                            <th class="col-2">Controls</th>
+                                            <th class="col-1">Attachment</th>
+                                            <th class="col-1">Controls</th>
                                         </tr>
                                     </thead>
                                     <tbody dir-paginate="tag in tags |  filter:search | itemsPerPage: pageSize">
@@ -92,9 +92,11 @@
                                             <td>{{tag.date | date:'MM/dd/yyyy'}}</td>
                                             <td>{{tag.billofland}}</td>
                                             <td>{{tag.vendor}}</td>
-                                            <td>data/sample.pdf</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">EDIT</button>
+                                                <a class="btn btn-success btn-block btn-sm" ng-click="viewpdf(tag)">VIEW PDF</a>
+                                            </td>
+                                            <td>
+                                                <button type="button" class="btn btn-primary btn-block btn-sm" ng-click="upload(tag)">UPLOAD</button>
 
                                             </td>
                                         </tr>
@@ -126,55 +128,17 @@
 
 </div>
 
-<div class="modal fade" id="modal-xl">
-    <div class="modal-dialog modal-xl">
+<div class="modal fade" id="upload" style="padding-top: 18%!important;">
+    <div class="modal-dialog">
+        <button type="button" class="btn btn-default float-right" data-dismiss="modal">X</button>
         <div class="modal-content">
 
             <div id="pmodal" class="modal-body">
-
-                <table class="table m-0" style="border-top:0px!important">
-                    <thead>
-                        <tr>
-                            <th colspan="2">
-                                <h1 class="text-center" style="font-size: 100px;"><strong>{{PONumber}}</strong></h1>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="text-left pleft" style="font-size: 40px;  border: none;">{{sidemark}}</td>
-                            <td class="text-right pleft" style="font-size: 40px; border: none;">{{PONumber}}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-left" style="font-size: 40px;">{{Carrier}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{MaterialType}}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-left" style="font-size: 40px;">{{size}}</td>
-                            <td class="text-right" style="font-size: 40px;">{{recvdate | date:'MM/dd/yyyy'}}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" style="font-size: 40px;">{{OrderNumber}} <br>{{Store}}</td>
-                        </tr>
-
-                        <tr>
-                            <td colspan="2">
-                                <center>
-                                    <hr>
-                                    <div id="container">
-                                        <div id="barcode"></div>
-                                    </div>
-                                </center>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-
+                <input class="form-control" type="file" id="files" name="files[]" accept="application/pdf" />
             </div>
 
-            <div class="modal-footer justify-content-between hidef">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" ng-click="printhis();">Print</button>
+            <div class="overlay">
+                <i class="fas fa-3x fa-circle-notch fa-spin"></i>
             </div>
         </div>
         <!-- /.modal-content -->
