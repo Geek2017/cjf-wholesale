@@ -41,6 +41,7 @@ angular.module('cjfw').controller('indexCtrl', function($scope, $location) {
         }
 
         if (localStorage.getItem('role') == 'viewer') {
+
             $('.storage').hide();
             $('.invoices').hide();
             $('.users').hide();

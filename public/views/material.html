@@ -81,7 +81,7 @@
                         <!-- /.card-header -->
                         <div class="card-body p-0">
                             <div class="table-responsive">
-                                <table class="table m-0">
+                                <table class="table m-0 material">
                                     <thead>
                                         <tr>
                                             <th>PO #</th>
@@ -91,9 +91,11 @@
                                             <th>Materials</th>
                                             <th>Side Mark</th>
                                             <th>Roll #</th>
-                                            <th>Qty.</th>
-                                            <th>Width</th>
+
+
                                             <th>Length</th>
+                                            <th>Width</th>
+                                            <th>Total Sqft.</th>
                                             <th>Description</th>
                                             <th>Controls</th>
                                         </tr>
@@ -112,7 +114,7 @@
                                             <td>{{tag.Length}}</td>
                                             <td>{{tag.Description}}</td>
                                             <td>
-                                                <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">EDIT</button>
+                                                <button type="button" class="btn btn-primary btn-sm edit" ng-click="getpdata(tag)">EDIT</button>
                                                 <button type="button" class="btn btn-success btn-sm" ng-click="viewpdata(tag)">VIEW</button>
                                             </td>
                                         </tr>

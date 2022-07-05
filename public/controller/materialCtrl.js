@@ -7,6 +7,10 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
         timer: 3000
     });
 
+    if (localStorage.getItem('role') == 'viewer') {
+        $('.edit').hide();
+    }
+
     let dfrom;
     let duntil;
 
