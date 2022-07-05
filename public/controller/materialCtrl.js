@@ -58,8 +58,6 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
 
     $scope.applyfilter = function() {
 
-
-
         firebase.database().ref('/storage/').orderByChild('date').startAt(dfrom).endAt(duntil).on("value", function(snapshot) {
             $timeout(function() {
                 $scope.$apply(function() {
@@ -70,15 +68,20 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
 
 
 
+
+
                     snapshot.forEach(childSnapshot => {
                         let item = childSnapshot.val();
                         item.key = childSnapshot.key;
+
+
 
                         console.log(item)
                         angular.forEach(item.details, function(value, key) {
                             ndata = [{
                                 "keyid": item.key,
                                 "date": item.date,
+                                "days": 'counter',
                                 "billofland": item.billofland,
                                 "vendor": item.vendor,
                                 "Carrier": item.details[key].Carrier,
@@ -94,8 +97,8 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                                 "Width": item.details[key].Width
                             }]
 
-                            returnArr.push(ndata[0]);
                         });
+
 
                     });
 
@@ -125,9 +128,20 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
 
                     console.log(item)
                     angular.forEach(item.details, function(value, key) {
+
+                        const start = item.date
+                        const end = new Date();
+
+                        let startd = new Date(start).toLocaleDateString('en-us')
+                        let endd = new Date(end).toLocaleDateString('en-us')
+                        const diffInMs = new Date(endd) - new Date(startd)
+                        const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+                        console.log(diffInDays)
+
                         ndata = [{
                             "keyid": item.key,
                             "date": item.date,
+                            "duration": diffInDays,
                             "billofland": item.billofland,
                             "vendor": item.vendor,
                             "Carrier": item.details[key].Carrier,
@@ -142,6 +156,10 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                             "Store": item.details[key].Store,
                             "Width": item.details[key].Width
                         }]
+
+
+
+
 
                         returnArr.push(ndata[0]);
                     });

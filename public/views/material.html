@@ -1,3 +1,11 @@
+<style>
+    table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+</style>
+
 <div class="content-wrapper">
 
     <!-- Content Header (Page header) -->
@@ -85,14 +93,13 @@
                                     <thead>
                                         <tr>
                                             <th>PO #</th>
-                                            <th class="col-1">Date</th>
+                                            <th>Date</th>
+                                            <th>Duration</th>
                                             <th>Store</th>
                                             <th>Shelf #</th>
                                             <th>Materials</th>
                                             <th>Side Mark</th>
                                             <th>Roll #</th>
-
-
                                             <th>Length</th>
                                             <th>Width</th>
                                             <th>Total Sqft.</th>
@@ -104,6 +111,7 @@
                                         <tr>
                                             <td>{{tag.PONumber}}</td>
                                             <td>{{tag.date | date:'MM/dd/yyyy'}}</td>
+                                            <td><strong class="text-red">{{tag.duration}} Day</strong> </td>
                                             <td>{{tag.Store}}</td>
                                             <td>N/A</td>
                                             <td>{{tag.MaterialType}}</td>
