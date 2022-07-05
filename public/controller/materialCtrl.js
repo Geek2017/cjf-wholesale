@@ -11,8 +11,14 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
     let duntil;
 
     $scope.datefrom = new Date();
-
     $scope.dateuntil = new Date();
+
+    $scope.resetdate = function() {
+        window.location.href = "#/";
+        window.location.href = "#/material";
+    }
+
+
 
     $scope.from = function() {
 

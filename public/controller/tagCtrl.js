@@ -10,6 +10,11 @@ angular.module('cjfw').controller('tagCtrl', function($scope, $timeout) {
     let dfrom;
     let duntil;
 
+    $scope.resetdate = function() {
+        window.location.href = "#/";
+        window.location.href = "#/tag";
+    }
+
     $scope.datefrom = new Date();
 
     $scope.dateuntil = new Date();

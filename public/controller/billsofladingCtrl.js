@@ -11,6 +11,11 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
     let dfrom;
     let duntil;
 
+    $scope.resetdate = function() {
+        window.location.href = "#/";
+        window.location.href = "#/billsoflading";
+    }
+
     $scope.datefrom = new Date();
 
     $scope.dateuntil = new Date();
