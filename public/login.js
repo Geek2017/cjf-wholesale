@@ -67,6 +67,11 @@ angular.module('cjfw').controller('loginCtrl', function($scope, $timeout) {
                                 icon: 'error',
                                 title: 'INVALID CREDENTIALS'
                             })
+
+                            setTimeout(() => {
+                                window.location.reload()
+                            }, 2000);
+
                         }
 
                     });
