@@ -76,10 +76,10 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
                                 "Description": item.details[key].Description,
                                 "Length": item.details[key].Length,
                                 "MaterialType": item.details[key]['Material Type'],
-                                "OrderNumber": item.details[key]['Order Number'],
-                                "PONumber": item.details[key]['PO Number'],
-                                "QuantitySqFt": item.details[key]['Quantity SqFt'],
-                                "RollNumber": item.details[key]['Roll Number'],
+                                "OrderNumber": item.details[key]['Order No'],
+                                "PONumber": item.details[key]['PO No'],
+                                "QuantitySqFt": item.details[key]['Qty SqFt'],
+                                "RollNumber": item.details[key]['Roll No'],
                                 "SideMark": item.details[key].SideMark,
                                 "Store": item.details[key].Store,
                                 "Width": item.details[key].Width
@@ -120,6 +120,7 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
 
                     angular.forEach(item.details, function(value, key) {
                         ndata = [{
+                            "keyid": item.key,
                             "date": item.date,
                             "billofland": item.billofland,
                             "vendor": item.vendor,
@@ -127,16 +128,13 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
                             "Description": item.details[key].Description,
                             "Length": item.details[key].Length,
                             "MaterialType": item.details[key]['Material Type'],
-                            "OrderNumber": item.details[key]['Order Number'],
-                            "PONumber": item.details[key]['PO Number'],
-                            "QuantitySqFt": item.details[key]['Quantity SqFt'],
-                            "RollNumber": item.details[key]['Roll Number'],
+                            "OrderNumber": item.details[key]['Order No'],
+                            "PONumber": item.details[key]['PO No'],
+                            "QuantitySqFt": item.details[key]['Qty SqFt'],
+                            "RollNumber": item.details[key]['Roll No'],
                             "SideMark": item.details[key].SideMark,
                             "Store": item.details[key].Store,
-                            "Width": item.details[key].Width,
-                            "mdata": item.details,
-                            "file": item.file,
-                            "key": item.key
+                            "Width": item.details[key].Width
                         }]
 
                         returnArr.push(ndata[0]);
