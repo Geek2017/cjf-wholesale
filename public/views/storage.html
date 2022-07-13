@@ -119,19 +119,20 @@
                                 <table id="tblstorage0" class="table m-0">
 
                                     <thead>
-                                        <tr>
-                                            <th>#</th>
-                                            <th>PO No</th>
-                                            <th>Order No</th>
-                                            <th>SideMark</th>
-                                            <th>Width</th>
-                                            <th>Length</th>
-                                            <th style="width: 90px;">Qty SqFt</th>
-                                            <th>Roll No</th>
-                                            <th style="width: 120px;">Carrier</th>
-                                            <th>Material Type</th>
-                                            <th>Store</th>
-                                            <th style="width: 180px;">Description</th>
+                                        <tr class="row">
+                                            <tr class="col-6">
+                                                <th>#</th>
+                                                <th>PO No</th>
+                                                <th>Order No</th>
+                                                <th>SideMark</th>
+                                                <th>Width</th>
+                                                <th>Length</th>
+                                                <th style="width: 90px;">Qty SqFt</th>
+                                                <th>Roll No</th>
+                                                <th style="width: 120px;">Carrier</th>
+                                                <th>Material Type</th>
+                                                <th>Store</th>
+                                                <th style="width: 180px;">Description</th>
                                         </tr>
                                     </thead>
                                     <tbody id="addmaterial0">
@@ -226,11 +227,14 @@
                             </div>
 
                         </div>
-
+                            
+                      
+                        
                         <div class="card-footer">
-
-                            <div class="btn-group float-right savedata">
+                            
+                            <div class="btn-group float-right savedata  p-1">
                                 <button type="button" class="btn btn-primary" ng-click="savematerial()">SAVE & PRINT</button>
+                                
                                 <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon" data-toggle="dropdown">
                                         <span class="sr-only">Toggle Dropdown</span>
                                     </button>
@@ -238,7 +242,12 @@
                                     <a class="dropdown-item" href="#">Email</a>
                                     <a class="dropdown-item" href="#">Download</a>
                                 </div>
+                               
                             </div>
+                            <div class="btn-group float-right p-1">
+                                <button type="button" class="btn btn-success" ng-click="upload()">UPLOAD BOL</button>
+                            </div>
+                            
                         </div>
 
                     </div>
@@ -303,6 +312,25 @@
             <div class="modal-footer justify-content-between hidef">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" ng-click="printhis();">Print</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+
+<div class="modal fade" id="upload" style="padding-top: 18%!important;">
+    <div class="modal-dialog">
+        <button type="button" class="btn btn-default float-right" data-dismiss="modal">X</button>
+        <div class="modal-content">
+
+            <div id="pmodal" class="modal-body">
+                <input class="form-control" type="file" id="files" name="files[]" accept="application/pdf" />
+            </div>
+
+            <div class="overlay">
+                <i class="fas fa-3x fa-circle-notch fa-spin"></i>
             </div>
         </div>
         <!-- /.modal-content -->

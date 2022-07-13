@@ -4,6 +4,13 @@ angular.module('cjfw').controller('storageCtrl', function($scope, $timeout) {
 
     var marray;
 
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'middle-center',
+        showConfirmButton: false,
+        timer: 4000
+    });
+
     $scope.tojson0 = function(obj0) {
         var table0 = $('#tblstorage0').tableToJSON({
             extractor: function(cellIndex, $cell) {
@@ -28,7 +35,49 @@ angular.module('cjfw').controller('storageCtrl', function($scope, $timeout) {
         return table1;
     }
 
+    $('.overlay').hide();
 
+    $scope.upload = function() {
+        $('#upload').modal('toggle');
+
+        // console.log(tag.key)
+
+        // let uidkey = tag.key;
+
+        $("#files").change(function() {
+            var storage = firebase.storage();
+
+            var file = document.getElementById("files").files[0];
+            console.log(file);
+
+            var storageRef = firebase.storage().ref();
+
+            //dynamically set reference to the file name
+            var thisRef = storageRef.child(file.name);
+
+            //put request upload file to firebase storage
+            thisRef.put(file).then(function(snapshot) {
+                console.log(snapshot);
+            });
+
+            //get request to get URL for uploaded file
+            $('.overlay').show();
+
+            thisRef.getDownloadURL().then(function(url) {
+                console.log(url);
+               
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'PDF UPLOADED'
+                }, $('.overlay').hide(), $('#upload').modal('toggle'))
+
+            })
+        });
+
+
+
+    }
 
     let cnt0 = 0;
 
