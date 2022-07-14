@@ -17,6 +17,8 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
     $('.overlay').hide();
 
+    let bolurl;
+
     $scope.upload = function () {
         $('#upload').modal('toggle');
 
@@ -46,6 +48,7 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
             thisRef.getDownloadURL().then(function (url) {
                 console.log(url);
 
+                bolurl = url;
 
                 Toast.fire({
                     icon: 'success',
@@ -71,16 +74,7 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
         console.log(cnt0)
     }
 
-    $scope.revmaterial = function () {
-        console.log(cnt0)
-        if (cnt0 !== 0) {
-
-
-            $("#adtsdata").children("div[id=append]:last").fadeOut();
-
-            cnt0--;
-        }
-    }
+   
 
     $("#tblm").keyup(function () {
 
@@ -93,202 +87,201 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
     });
 
-
     let txtb = [];
-
-
-
 
     $scope.savematerial = function () {
 
-        $('.spinloading').show()
+        if (bolurl) {
 
-        $(":submit").attr("disabled", true);
+            $('.spinloading').show()
 
-        $('#dtsdata .form-group').each(function () {
-            var d0 = $(this).find('input').val();
-            var d1 = $(this).find('option:selected').val();
+            $(":submit").attr("disabled", true);
 
-            if (d0) {
-                txtb.push(d0);
-                console.log('d0: ' + d0);
+            $('#dtsdata .form-group').each(function () {
+                var d0 = $(this).find('input').val();
+                var d1 = $(this).find('option:selected').val();
 
-            } else {
-                if (d1) {
-                    txtb.push(d1);
-                    console.log('d1: ' + d1);
-                }
-
-            }
-
-        });
-
-        try {
-            setTimeout(() => {
-
-                console.log(txtb)
-
-                if (txtb.length > 4) {
-
-
-                    function createGroups(arr, numGroups) {
-                        try {
-                            const perGroup = Math.ceil(arr.length / numGroups);
-                            return new Array(numGroups)
-                                .fill('')
-                                .map((_, i) => arr.slice(i * perGroup, (i + 1) * perGroup));
-                        } catch (error) {
-                            txtb = [];
-                            console.log(txtb);
-                            $('input').val("");
-                        }
-
-                    }
-
-
-                    console.log(createGroups(txtb, txtb.length / 11));
-
-                    var fval = createGroups(txtb, txtb.length / 11);
-
-                    var frtval = [];
-                    var frt
-                    angular.forEach(fval, function (value, key) {
-                        console.log(value)
-
-                        frt = {
-                            PONo: value[0],
-                            OrderNo: value[1],
-                            Sidemark: value[2],
-                            Width: value[3],
-                            Length: value[4],
-                            QtySqft: value[5],
-                            RollNo: value[6],
-                            Store: value[7],
-                            Material: value[8],
-                            Carrier: value[9],
-                            Description: value[10]
-                        }
-
-                        console.log(frt);
-
-                        frtval.push(frt);
-                    });
-
-                    var uid = firebase.database().ref().child('/storage').push().key;
-
-                    var storage = {
-                        timstamp: firebase.database.ServerValue.TIMESTAMP,
-                        date: $scope.curdate,
-                        billofland: $scope.billofland,
-                        vendor: $scope.vendor,
-                        details: frtval,
-                        keyid: uid
-                    }
-
-                    $scope.lads = angular.merge(frtval);
-
-                    $scope.recvdate = $scope.curdate
-
-
-                    var updates = {};
-                    updates['/storage/' + uid] = storage;
-                    firebase.database().ref().update(updates);
-
-                    let repeat = fval.length;
-
-                    console.log(repeat)
-
-
-                    if (updates) {
-                        var inHTML = "";
-                        $.each(frtval, function (index, value) {
-                            var newItem = '<tr> <td colspan="2"> <h1 class="text-right" style="font-size: 100px;"><strong>' + value.PONo + '</strong> </h1> </td></tr><tr> <td class="text-left" style="font-size: 40px;"><strong>' + value.OrderNo + '</strong> <br></td><td></td></tr><tr> <td class="text-left" style="font-size: 20px;"><strong>CARRIER:' + value.Carrier + '</strong> </td><td></td></tr><tr> <td class="text-left" style="font-size: 20px;"><strong>STORE:' + value.Store + '</strong> </td><td class="text-right" style="font-size: 20px;"><strong>PO NUMBER:' + value.PONo + '</strong> </td></tr> <tr> <td class="text-left" style="font-size: 20px;"><strong>MATERIAL DESC:' + value.Description + '</strong> </td><td></td></tr><tr> <td class="text-left" style="font-size: 20px;">WAREHOUSE POSITION:<strong> 60-2</strong> </td><td></td></tr> <tr> <hr> </tr><tr> <td colspan="2"> <hr> <div class="float-right"> <div id="container' + parseInt(index + 1) + '"> </div></div></td></tr>'
-
-                            inHTML += newItem;
-
-                            console.log(parseInt(index + 1))
-                        });
-
-                        console.log(inHTML)
-
-                        $("#dynamicTable").html(inHTML);
-
-                        $('#modal-xl').modal('toggle');
-
-                        console.log(updates);
-
-                        setTimeout(() => {
-                            if (repeat) {
-
-                                var cntr = '#container';
-                                var bids = 'barcode';
-
-                                angular.forEach(frtval, function (value, key) {
-                                    console.log(key + 1)
-
-                                    let nc = cntr + parseInt(key + 1);
-
-                                    var ids = bids + key;
-
-                                    console.log(nc, ids);
-
-                                    $(nc).append($("<div id='" + ids + "'></div>"));
-
-                                    setTimeout(() => {
-                                        $('#' + ids).barcode(
-                                            frtval[key].PONo,
-                                            "code39", {
-                                            barWidth: 4,
-                                            barHeight: 100,
-                                            fontSize: 14
-                                        }
-                                        );
-
-                                        console.log(frtval[key].PONo);
-                                        $('.spinloading').hide()
-        
-                                        $(":submit").attr("disabled", false);
-                                    }, 100);
-
-
-                                });
-                            }
-                        }, 1000);
-
-                    }
-
-                    $scope.printhis = function () {
-                        $('#pmodal').kinziPrint({
-                            importCSS: true,
-                            loadCSS: 'dist/css/print.css'
-                        });
-                    }
+                if (d0) {
+                    txtb.push(d0);
+                    console.log('d0: ' + d0);
 
                 } else {
-                    txtb = [];
-                    console.log(txtb)
+                    if (d1) {
+                        txtb.push(d1);
+                        console.log('d1: ' + d1);
+                    }
+
                 }
 
+            });
+
+            try {
+                setTimeout(() => {
+
+                    console.log(txtb)
+
+                    if (txtb.length > 4) {
+
+
+                        function createGroups(arr, numGroups) {
+                            try {
+                                const perGroup = Math.ceil(arr.length / numGroups);
+                                return new Array(numGroups)
+                                    .fill('')
+                                    .map((_, i) => arr.slice(i * perGroup, (i + 1) * perGroup));
+                            } catch (error) {
+                                txtb = [];
+                                console.log(txtb);
+                                $('input').val("");
+                            }
+
+                        }
+
+
+                        console.log(createGroups(txtb, txtb.length / 11));
+
+                        var fval = createGroups(txtb, txtb.length / 11);
+
+                        var frtval = [];
+                        var frt
+                        angular.forEach(fval, function (value, key) {
+                            console.log(value)
+
+                            frt = {
+                                PONo: value[0],
+                                OrderNo: value[1],
+                                Sidemark: value[2],
+                                Width: value[3],
+                                Length: value[4],
+                                QtySqft: value[5],
+                                RollNo: value[6],
+                                Store: value[7],
+                                Material: value[8],
+                                Carrier: value[9],
+                                Description: value[10]
+                            }
+
+                            console.log(frt);
+
+                            frtval.push(frt);
+                        });
+
+                        var uid = firebase.database().ref().child('/storage').push().key;
+
+                        var storage = {
+                            timstamp: firebase.database.ServerValue.TIMESTAMP,
+                            date: $scope.curdate,
+                            billofland: $scope.billofland,
+                            vendor: $scope.vendor,
+                            details: frtval,
+                            keyid: uid
+                        }
+
+                        $scope.lads = angular.merge(frtval);
+
+                        $scope.recvdate = $scope.curdate
+
+
+                        var updates = {};
+                        updates['/storage/' + uid] = storage;
+                        firebase.database().ref().update(updates);
+
+                        let repeat = fval.length;
+
+                        console.log(repeat)
+
+
+                        if (updates) {
+                            var inHTML = "";
+                            $.each(frtval, function (index, value) {
+                                var newItem = '<tr> <td colspan="2"> <h1 class="text-right" style="font-size: 100px;"><strong>' + value.PONo + '</strong> </h1> </td></tr><tr> <td class="text-left" style="font-size: 40px;"><strong>' + value.OrderNo + '</strong> <br></td><td></td></tr><tr> <td class="text-left" style="font-size: 20px;"><strong>CARRIER:' + value.Carrier + '</strong> </td><td></td></tr><tr> <td class="text-left" style="font-size: 20px;"><strong>STORE:' + value.Store + '</strong> </td><td class="text-right" style="font-size: 20px;"><strong>PO NUMBER:' + value.PONo + '</strong> </td></tr> <tr> <td class="text-left" style="font-size: 20px;"><strong>MATERIAL DESC:' + value.Description + '</strong> </td><td></td></tr><tr> <td class="text-left" style="font-size: 20px;">WAREHOUSE POSITION:<strong> 60-2</strong> </td><td></td></tr> <tr> <hr> </tr><tr> <td colspan="2"> <hr> <div class="float-right"> <div id="container' + parseInt(index + 1) + '"> </div></div></td></tr>'
+
+                                inHTML += newItem;
+
+                                console.log(parseInt(index + 1))
+                            });
+
+                            console.log(inHTML)
+
+                            $("#dynamicTable").html(inHTML);
+
+                            $('#modal-xl').modal('toggle');
+
+                            console.log(updates);
+
+                            setTimeout(() => {
+                                if (repeat) {
+
+                                    var cntr = '#container';
+                                    var bids = 'barcode';
+
+                                    angular.forEach(frtval, function (value, key) {
+                                        console.log(key + 1)
+
+                                        let nc = cntr + parseInt(key + 1);
+
+                                        var ids = bids + key;
+
+                                        console.log(nc, ids);
+
+                                        $(nc).append($("<div id='" + ids + "'></div>"));
+
+                                        setTimeout(() => {
+                                            $('#' + ids).barcode(
+                                                frtval[key].PONo,
+                                                "code39", {
+                                                barWidth: 4,
+                                                barHeight: 100,
+                                                fontSize: 14
+                                            }
+                                            );
+
+                                            console.log(frtval[key].PONo);
+                                            $('.spinloading').hide()
+
+                                            $(":submit").attr("disabled", false);
+                                        }, 100);
+
+
+                                    });
+                                }
+                            }, 1000);
+
+                        }
+
+                        $scope.printhis = function () {
+                            $('#pmodal').kinziPrint({
+                                importCSS: true,
+                                loadCSS: 'dist/css/print.css'
+                            });
+                        }
+
+                    } else {
+                        txtb = [];
+                        console.log(txtb)
+                    }
 
 
 
 
 
 
-            }, 3000);
-        } catch (error) {
+
+                }, 3000);
+            } catch (error) {
+                Toast.fire({
+                    icon: 'success',
+                    title: error
+                }, setTimeout(() => {
+                    window.location.reload();
+                }, 2000))
+            }
+        }else{
             Toast.fire({
-                icon: 'success',
-                title: error
-            }, setTimeout(() => {
-                window.location.reload();
-            }, 2000))
+                icon: 'error',
+                title: 'OPS:' + 'UPLOAD BOL FIRST'
+            })
         }
-
-
-
-
-
     }
 
 
