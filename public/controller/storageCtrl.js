@@ -77,7 +77,8 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
         data.lth = $scope.lth;
         $scope.data.push(data);
 
-
+        $scope.wth = "";
+        $scope.lth = "";
 
         cnt0++;
         console.log(cnt0)
