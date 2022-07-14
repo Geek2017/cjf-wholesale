@@ -118,14 +118,14 @@
                                                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
                                                     <i class="fas fa-minus"></i>
                                                 </button>
-                                                <!-- <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                            <i class="fas fa-times"></i>
-                                          </button> -->
+                                                <button type="button" class="btn btn-tool" data-card-widget="remove">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
                                             </div>
                                         </div>
 
                                         <div class="card-body">
-                                            <div class="row " >
+                                            <div class="row ">
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>PO No</label>
@@ -150,19 +150,19 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Width</label>
-                                                        <input type="number" name="wth" ng-model="wth" class="form-control"
-                                                            placeholder="{{m.wth}}" required>
+                                                        <input type="number" name="wth" ng-model="wth"
+                                                            class="form-control" placeholder="{{m.wth}}" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Length</label>
-                                                        <input type="number" name="lth" ng-model="lth"  class="form-control"
-                                                            placeholder="{{m.lth}}" required>
+                                                        <input type="number" name="lth" ng-model="lth"
+                                                            class="form-control" placeholder="{{m.lth}}" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <div class="form-group" >
+                                                    <div class="form-group">
                                                         <label>Qty SqFt</label>
                                                         <input type="number" name="qty" class="form-control"
                                                             placeholder="Enter ..." value="{{wth*lth}}" required>
@@ -178,8 +178,8 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Store</label>
-                                                        <select name="txtd" class="form-control"
-                                                            style="font-size:14px;" required>
+                                                        <select name="txtd" class="form-control" style="font-size:14px;"
+                                                            required>
                                                             <option disabled value="">SELECT</option>
 
                                                             <option value="Carpet Yard">Carpet Yard</option>
@@ -260,8 +260,8 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Carrier</label>
-                                                        <select name="txtd" class="form-control"
-                                                            style="font-size:14px;" required>
+                                                        <select name="txtd" class="form-control" style="font-size:14px;"
+                                                            required>
                                                             <option value="0" selected disabled>SELECT</option>
                                                             <option value="UPS">UPS</option>
                                                             <option value="DHL">DHL</option>
@@ -278,7 +278,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
 
@@ -287,7 +287,8 @@
                             <div class="card-footer">
 
                                 <div class="btn-group float-right savedata  p-1">
-                                    <button type="submit" class="btn btn-primary" ng-click=""><i class="fas fa-circle-notch fa-spin spinloading"></i> SAVE &
+                                    <button type="submit" class="btn btn-primary" ng-click=""><i
+                                            class="fas fa-circle-notch fa-spin spinloading"></i> SAVE &
                                         PRINT</button>
 
                                     <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon"
@@ -340,7 +341,7 @@
         <button type="button" class="btn btn-default float-right" data-dismiss="modal">X</button>
         <div class="modal-content">
 
-            <div  class="modal-body">
+            <div class="modal-body">
                 <input class="form-control" type="file" id="files" name="files[]" accept="application/pdf" />
             </div>
 

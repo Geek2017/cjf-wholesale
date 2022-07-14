@@ -2,9 +2,6 @@
     .table td,
     .table th {
         border-top: 0px !important;
-    }
-
-    .upload{
-        display: none !important;
+        color: black!important;
     }
 }
