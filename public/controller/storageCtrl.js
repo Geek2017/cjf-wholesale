@@ -66,26 +66,53 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
     $('.spinloading').hide()
 
+    $scope.data = [
+        { wth: "", lth: "", qty: "" }];
+
+
     $scope.addmaterial = function () {
-        $("#dtsdata").append('<div class="card"> <div class="card-header"><h3 class="card-title">Details:</h3> <div class="card-tools"> <button type="button" class="btn btn-tool" data-card-widget="collapse"> <i class="fas fa-minus"></i> </button> </div></div><div class="card-body"> <div class="row"> <div class="col-md-2"> <div class="form-group"> <label>PO No</label> <input type="text" name="txtd" class="form-control" placeholder="Enter ..." required> </div></div><div class="col-md-2"> <div class="form-group"> <label>Order No</label> <input type="text" name="txtd" class="form-control" placeholder="Enter ..." required> </div></div><div class="col-md-2"> <div class="form-group"> <label>SideMark</label> <input type="text" name="txtd" class="form-control" placeholder="Enter ..." required> </div></div><div class="col-md-2"> <div class="form-group"> <label>Width</label> <input type="text" name="txtd" class="form-control" placeholder="Enter ..." required> </div></div><div class="col-md-2"> <div class="form-group"> <label>Length</label> <input type="text" name="txtd" class="form-control" placeholder="Enter ..." required> </div></div><div class="col-md-2"> <div class="form-group"> <label>Qty SqFt</label> <input type="text" name="txtd" class="form-control" placeholder="Enter ..." required> </div></div><div class="col-md-2"> <div class="form-group"> <label>Roll No</label> <input type="text" name="txtd" class="form-control" placeholder="Enter ..." required> </div></div><div class="col-md-2"> <div class="form-group"> <label>Store</label> <select name="txtd" class="form-control" style="font-size:14px;" required> <option disabled value="">SELECT</option> <option value="Carpet Yard">Carpet Yard</option> <option value="EB-Carpets &amp; More East Brunswick"> EB-Carpets &amp; More East Brunswick</option> <option value="Warehouse">Warehouse</option> <option value="SI-Carpets &amp; More Staten Island"> SI-Carpets &amp; More Staten Island</option> <option value="OB-Carpets &amp; More Old Bridge">OB-Carpets &amp; More Old Bridge</option> </select> </div></div><div class="col-md-2"> <div class="form-group"> <label>Material Type</label> <select name="txtd" class="form-control" ng-model="materialtype" style="font-size:14px;" required> <option disabled value="">SELECT</option> <option value="Acessories">Acessories</option> <option value="Area Rugs">Area Rugs</option> <option value="Cabinet">Cabinet</option> <option value="Carpet">Carpet</option> <option value="Carpet Tile">Carpet Tile</option> <option value="Ceilings">Ceilings</option> <option value="Ceramic Tile">Ceramic Tile</option> <option value="Displays">Displays</option> <option value="Fixtures">Fixtures</option> <option value="Installation Materials">Installation Materials </option> <option value="Laminates">Laminates</option> <option value="Pad">Pad</option> <option value="Rubber Tile">Rubber Tile</option> <option value="Runner">Runner</option> <option value="Stone">Stone</option> <option value="Training">Training</option> <option value="Unclassified">Unclassified</option> <option value="Vinyl">Vinyl</option> <option value="Vinyl Sheet">Vinyl Sheet</option> <option value="Vinyl Tile">Vinyl Tile</option> <option value="Wall Base">Wall Base</option> <option value="Wall Coverings">Wall Coverings</option> <option value="wood">wood</option> </select> </div></div><div class="col-md-2"> <div class="form-group"> <label>Carrier</label> <select name="txtd" class="form-control" style="font-size:14px;" required> <option value="0" selected disabled>SELECT</option> <option value="UPS">UPS</option> <option value="DHL">DHL</option> <option value="FedEx">FedEx</option> </select> </div></div><div class="col-md-4"> <div class="form-group"> <label>Description</label> <input type="text" name="details" class="form-control" placeholder="Enter ..." required> </div></div></div></div></div>');
+
+        var data = {};
+        data.wth = $scope.wth;
+        data.lth = $scope.lth;
+        $scope.data.push(data);
+
 
 
         cnt0++;
         console.log(cnt0)
     }
 
-   
 
-    $("#tblm").keyup(function () {
 
-        $('#tblm tr').each(function (i, row) {
-            var $quant = $(row).find('.val0').val();
-            var $unitPrice = $(row).find('.val1').val();
+    // $("#dtsdata").keyup(function () {
 
-            $(row).find('.qty').val($quant * $unitPrice);
-        });
+    //     $('#dtsdata .form-group').each(function (i) {
+    //         let width = $(this).find('input[name=wth]').val();
+    //         let length = $(this).find('input[name=lth]').val();
 
-    });
+    //         console.log(i)
+
+    //         var v0=$scope.wth+i;
+    //         var v1=$scope.lth+i;
+
+    //         console.log(v0,v1)
+
+    //         // $scope.qty+i == v0*v1;
+
+    //         // console.log($scope.qty+i == v0*v1)
+
+
+    //     });
+
+    //     // $('#tblm tr').each(function (i, row) {
+    //     //     var $quant = $(row).find('.val0').val();
+    //     //     var $unitPrice = $(row).find('.val1').val();
+
+    //     //     $(row).find('.qty').val($quant * $unitPrice);
+    //     // });
+
+    // });
 
     let txtb = [];
 
@@ -276,7 +303,7 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
                     window.location.reload();
                 }, 2000))
             }
-        }else{
+        } else {
             Toast.fire({
                 icon: 'error',
                 title: 'OPS:' + 'UPLOAD BOL FIRST'
