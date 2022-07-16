@@ -336,15 +336,34 @@
 </div>
 
 
-<div class="modal fade upload" id="upload" style="padding-top: 18%!important;">
+<div class="modal fade upload" id="upload" style="padding-top: 18%!important;" data-backdrop="static" data-keyboard="false">
+
     <div class="modal-dialog">
-        <button type="button" class="btn btn-default float-right" data-dismiss="modal">X</button>
+      
+        
         <div class="modal-content">
-
-            <div class="modal-body">
-                <input class="form-control" type="file" id="files" name="files[]" accept="application/pdf" />
+            <div class="card-header">
+                <h3 class="card-title">UPLOAD BILL OF LANDING:</h3>
+                <div class="card-tools">
+                    <button type="button" class="btn btn-outline-danger btn-sm float-right" ng-click="closemodal()" style="border-radius: 2px;">X</button>
+                </div>
             </div>
-
+            <div class="modal-body">
+                <div class="input-group">
+                    <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="files" name="files[]" accept="application/pdf">
+                        <label class="custom-file-label" for="exampleInputFile">Choose PDF File</label>
+                    </div>
+                    <div class="input-group-append">
+                        <button type="button" class="btn btn-default" ng-click="cancel()">Cancel</button>
+                    </div>
+                </div>
+                <div class="progress progress-sm active">
+                    <div class="progress-bar bg-success " role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+                      
+                    </div>
+                  </div>
+            </div>
             <div class="overlay">
                 <i class="fas fa-3x fa-circle-notch fa-spin"></i>
             </div>

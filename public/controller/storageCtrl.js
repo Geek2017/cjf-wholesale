@@ -19,6 +19,12 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
     let bolurl;
 
+    $scope.closemodal=function(){
+        $('#upload').modal('toggle');
+    }
+
+    $('.progress-sm').hide()
+
     $scope.upload = function () {
         $('#upload').modal('toggle');
 
@@ -26,36 +32,51 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
         // let uidkey = tag.key;
 
-        $("#files").change(function () {
-            var storage = firebase.storage();
+        $("#files").change(function (e) {
+            // var storage = firebase.storage();
+            $('.progress-sm').show();
 
-            var file = document.getElementById("files").files[0];
-            console.log(file);
+            var file = e.target.files[0];
 
-            var storageRef = firebase.storage().ref();
+            var storageRef = firebase.storage().ref('bol_files/' + file.name).put(file)
 
-            //dynamically set reference to the file name
-            var thisRef = storageRef.child(file.name);
+            $scope.cancel = function () {
+                storageRef.cancel();
+                window.location.reload()
+            }
 
-            //put request upload file to firebase storage
-            thisRef.put(file).then(function (snapshot) {
-                console.log(snapshot);
-            });
-
-            //get request to get URL for uploaded file
-            $('.overlay').show();
-
-            thisRef.getDownloadURL().then(function (url) {
-                console.log(url);
-
-                bolurl = url;
-
+         
+           
+            storageRef.on('state_changed', 
+              (snapshot) => {
+              
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                $('.progress-bar').css('width', progress+'%');
+              }, 
+              (error) => {
                 Toast.fire({
+                    icon: 'error',
+                    title: 'OPS:' + 'UPLOAD BOL FIRST'
+                })
+              }, 
+              () => {
+                // Handle successful uploads on complete
+                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                storageRef.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                  console.log('File available at', downloadURL);
+                  Toast.fire({
                     icon: 'success',
-                    title: 'PDF UPLOADED'
-                }, $('.overlay').hide(), $('#upload').modal('toggle'))
+                    title: 'Upload Successful'
+                })
+                setTimeout(() => {
+                    window.location.reload()
+                }, 1000);
+                });
+              }
+            );
+             
 
-            })
         });
 
 
