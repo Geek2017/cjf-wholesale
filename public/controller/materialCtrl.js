@@ -66,10 +66,6 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
 
                     let ndata;
 
-
-
-
-
                     snapshot.forEach(childSnapshot => {
                         let item = childSnapshot.val();
                         item.key = childSnapshot.key;
@@ -103,7 +99,7 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                                 "Width": item.details[key].Width,
                                 "duration":diffInDays
                             }]
-
+                            returnArr.push(ndata[0]);
                         });
 
 
