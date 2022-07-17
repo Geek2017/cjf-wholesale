@@ -74,7 +74,14 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                         let item = childSnapshot.val();
                         item.key = childSnapshot.key;
 
+                        const start = item.date
+                        const end = new Date();
 
+                        let startd = new Date(start).toLocaleDateString('en-us')
+                        let endd = new Date(end).toLocaleDateString('en-us')
+                        const diffInMs = new Date(endd) - new Date(startd)
+                        const diffInDays = diffInMs / (1000 * 60 * 60 * 24);
+                        console.log(diffInDays)
 
                         console.log(item)
                         angular.forEach(item.details, function(value, key) {
@@ -86,14 +93,15 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                                 "Carrier": item.details[key].Carrier,
                                 "Description": item.details[key].Description,
                                 "Length": item.details[key].Length,
-                                "MaterialType": item.details[key]['Material Type'],
-                                "OrderNumber": item.details[key]['Order No'],
-                                "PONumber": item.details[key]['PO No'],
-                                "QuantitySqFt": item.details[key]['Qty SqFt'],
-                                "RollNumber": item.details[key]['Roll No'],
-                                "SideMark": item.details[key].SideMark,
+                                "MaterialType": item.details[key]['Material'],
+                                "OrderNumber": item.details[key]['OrderNo'],
+                                "PONumber": item.details[key]['PONo'],
+                                "QtySqft": item.details[key].QtySqft,
+                                "RollNumber": item.details[key]['RollNo'],
+                                "SideMark": item.details[key].Sidemark,
                                 "Store": item.details[key].Store,
-                                "Width": item.details[key].Width
+                                "Width": item.details[key].Width,
+                                "duration":diffInDays
                             }]
 
                         });
@@ -145,14 +153,15 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                             "Carrier": item.details[key].Carrier,
                             "Description": item.details[key].Description,
                             "Length": item.details[key].Length,
-                            "MaterialType": item.details[key]['Material Type'],
-                            "OrderNumber": item.details[key]['Order No'],
-                            "PONumber": item.details[key]['PO No'],
-                            "QuantitySqFt": item.details[key]['Qty SqFt'],
-                            "RollNumber": item.details[key]['Roll No'],
-                            "SideMark": item.details[key].SideMark,
+                            "MaterialType": item.details[key]['Material'],
+                            "OrderNumber": item.details[key]['OrderNo'],
+                            "PONumber": item.details[key]['PONo'],
+                            "QtySqft": item.details[key].QtySqft,
+                            "RollNumber": item.details[key]['RollNo'],
+                            "SideMark": item.details[key].Sidemark,
                             "Store": item.details[key].Store,
-                            "Width": item.details[key].Width
+                            "Width": item.details[key].Width,
+                            "duration":diffInDays
                         }]
 
 

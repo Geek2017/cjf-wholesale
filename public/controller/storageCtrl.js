@@ -65,12 +65,13 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 storageRef.snapshot.ref.getDownloadURL().then((downloadURL) => {
                   console.log('File available at', downloadURL);
+                  bolurl=downloadURL;
                   Toast.fire({
                     icon: 'success',
                     title: 'Upload Successful'
                 })
                 setTimeout(() => {
-                    window.location.reload()
+                    $('#upload').modal('toggle');
                 }, 1000);
                 });
               }
@@ -223,7 +224,8 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
                             billofland: $scope.billofland,
                             vendor: $scope.vendor,
                             details: frtval,
-                            keyid: uid
+                            keyid: uid,
+                            bolurl:bolurl
                         }
 
                         $scope.lads = angular.merge(frtval);
