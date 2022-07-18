@@ -96,8 +96,7 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                                 "RollNumber": item.details[key]['RollNo'],
                                 "SideMark": item.details[key].Sidemark,
                                 "Store": item.details[key].Store,
-                                "Width": item.details[key].Width,
-                                "duration":diffInDays
+                                "Width": item.details[key].Width
                             }]
                             returnArr.push(ndata[0]);
                         });
