@@ -120,21 +120,22 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
 
                     angular.forEach(item.details, function(value, key) {
                         ndata = [{
-                            "keyid": item.key,
-                            "date": item.date,
-                            "billofland": item.billofland,
-                            "vendor": item.vendor,
-                            "Carrier": item.details[key].Carrier,
-                            "Description": item.details[key].Description,
-                            "Length": item.details[key].Length,
-                            "MaterialType": item.details[key]['Material Type'],
-                            "OrderNumber": item.details[key]['Order No'],
-                            "PONumber": item.details[key]['PO No'],
-                            "QuantitySqFt": item.details[key]['Qty SqFt'],
-                            "RollNumber": item.details[key]['Roll No'],
-                            "SideMark": item.details[key].SideMark,
-                            "Store": item.details[key].Store,
-                            "Width": item.details[key].Width
+                                "keyid": item.key,
+                                "date": item.date,
+                                "billofland": item.billofland,
+                                "vendor": item.vendor,
+                                "Carrier": item.details[key].Carrier,
+                                "Description": item.details[key].Description,
+                                "Length": item.details[key].Length,
+                                "MaterialType": item.details[key]['Material'],
+                                "OrderNumber": item.details[key]['OrderNo'],
+                                "PONumber": item.details[key]['PONo'],
+                                "QtySqft": item.details[key].QtySqft,
+                                "RollNumber": item.details[key]['RollNo'],
+                                "SideMark": item.details[key].Sidemark,
+                                "Store": item.details[key].Store,
+                                "Width": item.details[key].Width,
+                                "bolurl":item.bolurl
                         }]
 
                         returnArr.push(ndata[0]);
@@ -226,8 +227,11 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
     }
 
     $scope.viewpdf = function(tag) {
-        if (tag.file) {
-            var win = window.open(tag.file, '_blank');
+        
+        console.log(tag.bolurl);
+
+        if (tag.bolurl) {
+            var win = window.open(tag.bolurl, '_blank');
             if (win) {
                 win.focus();
             }

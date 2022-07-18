@@ -96,7 +96,7 @@
                                             <th class="col-3">Bill Of Lading</th>
                                             <th class="col-2">Vendor</th>
                                             <th class="col-1">Attachment</th>
-                                            <th class="col-1">Controls</th>
+                                            <!-- <th class="col-1">Controls</th> -->
                                         </tr>
                                     </thead>
                                     <tbody dir-paginate="tag in tags |  filter:search | itemsPerPage: pageSize">
@@ -107,10 +107,10 @@
                                             <td>
                                                 <a class="btn btn-success btn-block btn-sm" ng-click="viewpdf(tag)">VIEW PDF</a>
                                             </td>
-                                            <td>
+                                            <!-- <td>
                                                 <button type="button" class="btn btn-primary btn-block btn-sm" ng-click="upload(tag)">UPLOAD</button>
 
-                                            </td>
+                                            </td> -->
                                         </tr>
 
                                     </tbody>
