@@ -172,10 +172,9 @@ angular.module('cjfw').controller('tagCtrl', function($scope, $timeout) {
         $("#barcode").barcode(
             tag.PONumber,
             "code39", {
-                barWidth: 4,
-                barHeight: 100,
-                fontSize: 14
-            }
+                barWidth: 1,
+                barHeight: 50,
+                fontSize: 14            }
         );
 
     }

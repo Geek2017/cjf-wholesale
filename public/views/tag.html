@@ -154,36 +154,35 @@
                     <thead>
                         <tr>
                             <th colspan="2">
-                                <h1 class="text-center" style="font-size: 100px;"><strong>{{PONumber}}</strong></h1>
+                                <h1 class="text-right" style="font-size: 50px;"><strong>{{PONumber}}</strong></h1>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-left pleft" style="font-size: 30px;  border: none;">{{sidemark}}</td>
-                            <td class="text-right pleft" style="font-size: 30px; border: none;">{{PONumber}}</td>
+                            <td class="text-left pleft" style="font-size: 20px; border: none;"><strong> Side Mark: {{sidemark}}</strong></td>
+                            <td class="text-right pleft" style="font-size: 15px; border: none;">PO Number: {{PONumber}}</td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 30px;">{{Carrier}}</td>
-                            <td class="text-right" style="font-size: 30px;">{{MaterialType}}</td>
+                            <td class="text-left" style="font-size: 20px;">Carrier: {{Carrier}}</td>
+                            <td class="text-right" style="font-size: 15px;">Material Type: {{MaterialType}}</td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 30px;">{{size}}</td>
-                            <td class="text-right" style="font-size: 30px;">{{recvdate | date:'MM/dd/yyyy'}}</td>
+                            <td class="text-left" style="font-size: 20px;">Size: {{size}}</td>
+                            <td class="text-right" style="font-size: 15px;">Rcvd Date: {{recvdate | date:'MM/dd/yyyy'}}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: 30px;">{{OrderNumber}} <br>{{Store}}</td>
+                            <td colspan="2" style="font-size: 20px;">Order Number: {{OrderNumber}}<br>{{Store}}</td>
                         </tr>
-
                         <tr>
                             <td colspan="2">
-                                <center>
-                                    <hr>
-                                    <div id="container">
-                                        <div id="barcode"></div>
-                                    </div>
-                                </center>
-                            </td>
+                                <div class="row">
+                                  <hr>
+                                  <div id="container col-12 float-right">
+                                      <div id="barcode"></div>
+                                  </div>
+                                </div>
+                              </td>
                         </tr>
                     </tbody>
                 </table>
