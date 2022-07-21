@@ -2,11 +2,9 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
 
 
+    $scope.curdate = new Date();
 
 
-    var obj0, obj1;
-
-    var marray;
 
     var Toast = Swal.mixin({
         toast: true,
@@ -19,7 +17,7 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
     let bolurl;
 
-    $scope.closemodal=function(){
+    $scope.closemodal = function () {
         $('#upload').modal('toggle');
     }
 
@@ -45,38 +43,38 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
                 window.location.reload()
             }
 
-         
-           
-            storageRef.on('state_changed', 
-              (snapshot) => {
-              
-                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                console.log('Upload is ' + progress + '% done');
-                $('.progress-bar').css('width', progress+'%');
-              }, 
-              (error) => {
-                Toast.fire({
-                    icon: 'error',
-                    title: 'OPS:' + 'UPLOAD BOL FIRST'
-                })
-              }, 
-              () => {
-                // Handle successful uploads on complete
-                // For instance, get the download URL: https://firebasestorage.googleapis.com/...
-                storageRef.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                  console.log('File available at', downloadURL);
-                  bolurl=downloadURL;
-                  Toast.fire({
-                    icon: 'success',
-                    title: 'Upload Successful'
-                })
-                setTimeout(() => {
-                    $('#upload').modal('toggle');
-                }, 1000);
-                });
-              }
+
+
+            storageRef.on('state_changed',
+                (snapshot) => {
+
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    console.log('Upload is ' + progress + '% done');
+                    $('.progress-bar').css('width', progress + '%');
+                },
+                (error) => {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'OPS:' + 'UPLOAD BOL FIRST'
+                    })
+                },
+                () => {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    storageRef.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                        console.log('File available at', downloadURL);
+                        bolurl = downloadURL;
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Upload Successful'
+                        })
+                        setTimeout(() => {
+                            $('#upload').modal('toggle');
+                        }, 1000);
+                    });
+                }
             );
-             
+
 
         });
 
@@ -225,7 +223,7 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
                             vendor: $scope.vendor,
                             details: frtval,
                             keyid: uid,
-                            bolurl:bolurl
+                            bolurl: bolurl
                         }
 
                         $scope.lads = angular.merge(frtval);
@@ -336,4 +334,24 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
     }
 
 
-});
+}).filter('limitDigit', function() {
+    return function(num) {
+        var str = ("" + parseFloat(num)).substring(0, 9);
+        var lastChar = str[str.length - 1];
+        return (lastChar === '.') ? str.substring(0, str.length - 1) : str;
+    };
+}).directive("forceMaxlength", [function() {
+    return {
+      restrict: "A",
+      link: function(scope, elem, attrs) {
+        var limit = parseInt(attrs.mdMaxlength);
+        angular.element(elem).on("keydown", function() {
+          if (this.value.length >= limit) {
+            this.value = this.value.substr(0,limit-1);
+            return false;
+          }
+        });
+      }
+    }
+  }]);
+ 

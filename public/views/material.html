@@ -72,40 +72,42 @@
                                 <table class="table m-0 material tables">
                                     <thead>
                                         <tr>
-                                            <th>PO #</th>
+                                            <th>Store</th>
+                                            <th>PO Number</th>
+                                            <th>Receiving Materials</th>
+                                            <th>Shelf #</th>
                                             <th>Date</th>
                                             <th>Duration</th>
-                                            <th>Store</th>
-                                            <th>Shelf #</th>
-                                            <th>Materials</th>
                                             <th>Side Mark</th>
                                             <th>Roll #</th>
                                             <th>Length</th>
                                             <th>Width</th>
                                             <th>Total Sqft.</th>
+                                           
                                             <th>Description</th>
                                             <th>Controls</th>
                                         </tr>
                                     </thead>
                                     <tbody dir-paginate="tag in tags | filter:search | itemsPerPage: pageSize">
                                         <tr>
+                                            <td>{{tag.Store}}</td>
                                             <td>{{tag.PONumber}}</td>
+                                            <td>{{tag.MaterialType}}</td>
+                                            <td>N/A</td>
                                             <td>{{tag.date | date:'MM/dd/yyyy'}}</td>
                                             <td class="text-center"><h5><strong class="text-green">{{tag.duration}}</strong></h5></td>
-                                            <td>{{tag.Store}}</td>
-                                            <td>N/A</td>
-                                            <td>{{tag.MaterialType}}</td>
                                             <td>{{tag.SideMark}}</td>
                                             <td>{{tag.RollNumber}}</td>
-                                          
                                             <td>{{tag.Width}}</td>
                                             <td>{{tag.Length}}</td>
                                             <td>{{tag.QtySqft}}</td>
                                             <td>{{tag.Description}}</td>
-                                            <td> <button type="button" class="btn btn-primary btn-sm edit"
-                                                    ng-click="getpdata(tag)">EDIT</button> <button type="button"
-                                                    class="btn btn-success btn-sm"
-                                                    ng-click="viewpdata(tag)">VIEW</button> </td>
+                                            <td> 
+                                                <button type="button" class="btn btn-primary btn-sm edit"
+                                                    ng-click="getpdata(tag)">VIEW TAG</button> 
+                                                    
+                                                    <button type="button" class="btn btn-success btn-sm"
+                                                    ng-click="viewpdata(tag)">VIEW BOL</button> </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -122,14 +124,18 @@
 <div class="modal fade" id="modal-xl">
     <div class="modal-dialog modal-lg" style="width: 700px;">
         <div class="modal-content">
-            <div id="pmodal" class="modal-body">
+            <div  class="modal-body">
                 <table class="table m-0">
                     <thead>
                         <tr>
                             <th colspan="2">
-                                <h1 class="text-center" style="margin-left: 20%;"><strong><input type="text"
-                                            class="form-control form-control-border text-center PONumber"
-                                            value="{{PONumber}}" style="width: 300px;font-size: 50px;"> </strong></h1>
+                                <div class="row">
+                                    <div class="col-12">
+                                      
+                                            <input type="text" class="form-control form-control-border text-center PONumber float-right" value="{{PONumber}}" style="width: 300px;font-size: 50px;"> 
+                                        
+                                    </div>
+                                </div>
                             </th>
                         </tr>
                     </thead>
@@ -168,12 +174,12 @@
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <center>
-                                    <hr>
-                                    <div id="container">
-                                        <div id="barcode"></div>
-                                    </div>
-                                </center>
+                              <div class="row">
+                                <hr>
+                                <div id="container col-12 float-right">
+                                    <div id="barcode"></div>
+                                </div>
+                              </div>
                             </td>
                         </tr>
                     </tbody>
@@ -185,6 +191,7 @@
         </div>
     </div>
 </div>
+
 <div class="modal fade" id="modalview">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -193,35 +200,35 @@
                     <thead>
                         <tr>
                             <th colspan="2">
-                                <h1 class="text-center" style="font-size: 100px;"><strong>{{PONumber}}</strong></h1>
+                                <h1 class="text-right" style="font-size: 50px;"><strong>{{PONumber}}</strong></h1>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-left pleft" style="font-size: 30px; border: none;">{{sidemark}}</td>
-                            <td class="text-right pleft" style="font-size: 30px; border: none;">{{PONumber}}</td>
+                            <td class="text-left pleft" style="font-size: 20px; border: none;"><strong> Side Mark: {{sidemark}}</strong></td>
+                            <td class="text-right pleft" style="font-size: 15px; border: none;">PO Number: {{PONumber}}</td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 30px;">{{Carrier}}</td>
-                            <td class="text-right" style="font-size: 30px;">{{MaterialType}}</td>
+                            <td class="text-left" style="font-size: 20px;">Carrier: {{Carrier}}</td>
+                            <td class="text-right" style="font-size: 15px;">Material Type: {{MaterialType}}</td>
                         </tr>
                         <tr>
-                            <td class="text-left" style="font-size: 30px;">{{size}}</td>
-                            <td class="text-right" style="font-size: 30px;">{{recvdate | date:'MM/dd/yyyy'}}</td>
+                            <td class="text-left" style="font-size: 20px;">Size: {{size}}</td>
+                            <td class="text-right" style="font-size: 15px;">Rcvd Date: {{recvdate | date:'MM/dd/yyyy'}}</td>
                         </tr>
                         <tr>
-                            <td colspan="2" style="font-size: 30px;">{{OrderNumber}}<br>{{Store}}</td>
+                            <td colspan="2" style="font-size: 20px;">Order Number: {{OrderNumber}}<br>{{Store}}</td>
                         </tr>
                         <tr>
                             <td colspan="2">
-                                <center>
-                                    <hr>
-                                    <div id="container">
-                                        <div id="barcodeview"></div>
-                                    </div>
-                                </center>
-                            </td>
+                                <div class="row">
+                                  <hr>
+                                  <div id="container col-12 float-right">
+                                      <div id="barcodeview"></div>
+                                  </div>
+                                </div>
+                              </td>
                         </tr>
                     </tbody>
                 </table>

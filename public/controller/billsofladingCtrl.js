@@ -117,29 +117,16 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
 
                     console.log(item)
 
-
-                    angular.forEach(item.details, function(value, key) {
-                        ndata = [{
-                                "keyid": item.key,
-                                "date": item.date,
-                                "billofland": item.billofland,
-                                "vendor": item.vendor,
-                                "Carrier": item.details[key].Carrier,
-                                "Description": item.details[key].Description,
-                                "Length": item.details[key].Length,
-                                "MaterialType": item.details[key]['Material'],
-                                "OrderNumber": item.details[key]['OrderNo'],
-                                "PONumber": item.details[key]['PONo'],
-                                "QtySqft": item.details[key].QtySqft,
-                                "RollNumber": item.details[key]['RollNo'],
-                                "SideMark": item.details[key].Sidemark,
-                                "Store": item.details[key].Store,
-                                "Width": item.details[key].Width,
-                                "bolurl":item.bolurl
+                    ndata = [{
+                        "keyid": item.key,
+                        "date": item.date,
+                        "billofland": item.billofland,
+                        "vendor": item.vendor,
+                        "bolurl":item.bolurl
                         }]
+                returnArr.push(ndata[0]);
 
-                        returnArr.push(ndata[0]);
-                    });
+                  
 
 
 

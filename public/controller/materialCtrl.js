@@ -113,7 +113,6 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
         });
     }
 
-
     firebase.database().ref('/storage/').orderByChild('date').on("value", function(snapshot) {
         $timeout(function() {
             $scope.$apply(function() {
@@ -176,7 +175,6 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
         })
     });
 
-
     $scope.printhis = function() {
         $('#pmodal').kinziPrint({
             importCSS: true,
@@ -200,8 +198,8 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
         $("#barcode").barcode(
             tag.PONumber,
             "code39", {
-                barWidth: 4,
-                barHeight: 100,
+                barWidth: 1,
+                barHeight: 50,
                 fontSize: 14
             }
         );
@@ -228,8 +226,8 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
         $("#barcodeview").barcode(
             tag.PONumber,
             "code39", {
-                barWidth: 4,
-                barHeight: 100,
+                barWidth: 1,
+                barHeight: 50,
                 fontSize: 14
             }
         );

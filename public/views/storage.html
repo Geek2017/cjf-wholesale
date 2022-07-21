@@ -150,22 +150,23 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Width</label>
-                                                        <input type="number" name="wth" ng-model="wth"
-                                                            class="form-control" placeholder="{{m.wth}}" required>
+                                                        <input type="number" name="wth"  ng-model="wth"
+                                                            class="form-control" placeholder="{{m.wth}}"  md-maxlength="7" force-maxlength="" required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Length</label>
-                                                        <input type="number" name="lth" ng-model="lth"
-                                                            class="form-control" placeholder="{{m.lth}}" required>
+                                                        <input type="number" name="lth" ng-model="lth"  md-maxlength="7" force-maxlength=""
+                                                            class="form-control" placeholder="{{m.lth}}"  
+                                                            required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Qty SqFt</label>
                                                         <input type="number" name="qty" class="form-control"
-                                                            placeholder="Enter ..." value="{{wth*lth}}" required>
+                                                            placeholder="Enter ..."    value="{{wth*lth   | limitDigit }}" disabled>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">

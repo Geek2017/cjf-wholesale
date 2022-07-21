@@ -85,35 +85,29 @@
                                 <table class="table m-0">
                                     <thead>
                                         <tr>
-                                           
                                             <th>Date</th>
                                             <th>Vendor</th>
                                             <th>Bill of landing</th>
                                             <th>PO #</th>
                                             <th>Order #</th>
                                             <th>Carrier</th>
-
                                             <th>Description</th>
                                             <th>Controls</th>
                                         </tr>
                                     </thead>
                                     <tbody dir-paginate="tag in tags |  filter:search | itemsPerPage: pageSize">
                                         <tr>
-                                           
                                             <td>{{tag.date | date:'MM/dd/yyyy'}}</td>
                                             <td>{{tag.vendor}}</td>
                                             <td>{{tag.billofland}}</td>
                                             <td>{{tag.PONumber}}</td>
                                             <td>{{tag.OrderNumber}}</td>
                                             <td>{{tag.Carrier}}</td>
-
                                             <td>{{tag.Description}}</td>
-
                                             <td>
                                                 <div class="btn-group ">
                                                     <button type="button" class="btn btn-primary btn-sm" ng-click="getpdata(tag)">PRINT TAG</button>
                                                     <button type="button" class="btn btn-primary dropdown-toggle dropdown-icon btn-sm" data-toggle="dropdown">
-                                                      
                                                 </button>
                                                     <div class="dropdown-menu" role="menu">
                                                         <a class="dropdown-item btn-sm" href="#">Email</a>
