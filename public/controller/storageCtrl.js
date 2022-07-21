@@ -336,7 +336,7 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
 }).filter('limitDigit', function() {
     return function(num) {
-        var str = ("" + parseFloat(num)).substring(0, 9);
+        var str = ("" + parseFloat(num)).substring(0, 6);
         var lastChar = str[str.length - 1];
         return (lastChar === '.') ? str.substring(0, str.length - 1) : str;
     };
