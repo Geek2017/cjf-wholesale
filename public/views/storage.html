@@ -150,14 +150,14 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Width</label>
-                                                        <input type="number" name="wth"  ng-model="wth"
-                                                            class="form-control" placeholder="{{m.wth}}"  md-maxlength="5" force-maxlength="" required>
+                                                        <input type="text" name="wth"  ng-model="wth"
+                                                            class="form-control" placeholder="{{m.wth}}"  md-maxlength="5"  required>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Length</label>
-                                                        <input type="number" name="lth" ng-model="lth"  md-maxlength="5" force-maxlength=""
+                                                        <input type="text" name="lth" ng-model="lth"  md-maxlength="5" 
                                                             class="form-control" placeholder="{{m.lth}}"  
                                                             required>
                                                     </div>
@@ -316,7 +316,7 @@
     </section>
 </div>
 
-<div class="modal fade" id="modal-xl">
+<div class="modal fade" id="modal-xl" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div id="pmodal" class="modal-body">
@@ -327,7 +327,7 @@
                 </table>
             </div>
             <div class="modal-footer justify-content-between hidef">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" ng-click="refreshthis()">Close</button>
                 <button type="button" class="btn btn-primary" ng-click="printhis();">Print</button>
             </div>
         </div>
@@ -336,12 +336,8 @@
     <!-- /.modal-dialog -->
 </div>
 
-
 <div class="modal fade upload" id="upload" style="padding-top: 18%!important;" data-backdrop="static" data-keyboard="false">
-
     <div class="modal-dialog">
-      
-        
         <div class="modal-content">
             <div class="card-header">
                 <h3 class="card-title">UPLOAD BILL OF LANDING:</h3>
@@ -369,7 +365,5 @@
                 <i class="fas fa-3x fa-circle-notch fa-spin"></i>
             </div>
         </div>
-        <!-- /.modal-content -->
     </div>
-    <!-- /.modal-dialog -->
 </div>

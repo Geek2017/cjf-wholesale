@@ -4,7 +4,9 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
 
     $scope.curdate = new Date();
 
-
+    $scope.refreshthis = function(){
+        window.location.reload();
+    }
 
     var Toast = Swal.mixin({
         toast: true,
@@ -333,6 +335,7 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
         }
     }
 
+   
 
 }).filter('limitDigit', function() {
     return function(num) {
