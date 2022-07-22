@@ -96,7 +96,9 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                                 "RollNumber": item.details[key]['RollNo'],
                                 "SideMark": item.details[key].Sidemark,
                                 "Store": item.details[key].Store,
-                                "Width": item.details[key].Width
+                                "Width": item.details[key].Width,
+                                "duration":diffInDays,
+                                "bolurl":item.bolurl
                             }]
                             returnArr.push(ndata[0]);
                         });
@@ -155,7 +157,8 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
                             "SideMark": item.details[key].Sidemark,
                             "Store": item.details[key].Store,
                             "Width": item.details[key].Width,
-                            "duration":diffInDays
+                            "duration":diffInDays,
+                            "bolurl":item.bolurl
                         }]
 
 
@@ -183,27 +186,35 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
         });
     }
 
+    var pdfurl;
+
     $scope.getpdata = function(tag) {
 
-        $('#modal-xl').modal('toggle');
-        $scope.PONumber = tag.PONumber
-        $scope.sidemark = tag.SideMark
-        $scope.Carrier = tag.Carrier
-        $scope.MaterialType = tag.MaterialType
-        $scope.size = tag.Width + "x" + tag.Length
-        $scope.recvdate = tag.date
-        $scope.OrderNumber = tag.OrderNumber
-        $scope.Store = tag.Store
-        console.log(tag)
-        $("#barcode").barcode(
-            tag.PONumber,
-            "code39", {
-                barWidth: 1,
-                barHeight: 50,
-                fontSize: 14
-            }
-        );
+        pdfurl=tag.bolurl;
 
+        $('#modal-xl').modal('toggle');
+        $scope.date = tag.date;
+        $scope.billofland=tag.billofland;
+        $scope.vendor=tag.vendor;
+
+        console.log(tag)
+
+        $scope.viewpdf = function() {
+        
+            console.log(pdfurl)
+     
+             if (tag.bolurl) {
+                 var win = window.open(pdfurl, '_blank');
+                 if (win) {
+                     win.focus();
+                 }
+             } else {
+                 Toast.fire({
+                     icon: 'error',
+                     title: 'NO PDF UPLOADED'
+                 })
+             }
+         }
     }
 
     var dtag;
@@ -266,5 +277,6 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
 
     }
 
+    
 
 });
