@@ -168,9 +168,17 @@
                                     <input type="text" ng-model="efullname" class="form-control" placeholder="Enter ...">
                                 </div>
                             </div>
+
                             <div class="col-sm-4">
                                 <div class="form-group">
                                     <label>Email:</label>
+                                    <input type="text" ng-model="eemail" class="form-control" placeholder="Enter ...">
+                                </div>
+                            </div>
+
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label>P:</label>
                                     <input type="text" ng-model="eemail" class="form-control" placeholder="Enter ...">
                                 </div>
                             </div>
@@ -195,6 +203,36 @@
             <div class="modal-footer justify-content-between hidef">
                 <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
                 <button type="button" class="btn btn-primary" ng-click="update();">UPDATE</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+
+<div class="modal fade" id="changepass" style="padding-top: 10%!important;">
+    <div class="modal-dialog ">
+        <div class="modal-content" style="width: 400px;">
+                <div class="card-body">
+                    <form>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label>New Password:</label>
+                                    <input type="password" ng-model="changepass" class="form-control pass">
+                                    <div class="input-group mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" ng-click="showpass()">
+                                        <label class="form-check-label text-danger" for="exampleCheck2">Show Password</label>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            <div class="modal-footer justify-content-between hidef">
+                <button type="button" class="btn btn-default" data-dismiss="modal">CLOSE</button>
+                <button type="button" class="btn btn-danger" ng-click="changeit();">CHANGE PASSWORD</button>
             </div>
         </div>
         <!-- /.modal-content -->

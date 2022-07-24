@@ -150,16 +150,13 @@
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Width</label>
-                                                        <input type="text" name="wth"  ng-model="wth"
-                                                            class="form-control" placeholder="{{m.wth}}"  md-maxlength="5"  required>
+                                                        <input type="text" name="wth"  ng-model="wth" class="form-control" placeholder="{{m.wth}}" limit="5"  amount-limit>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
                                                     <div class="form-group">
                                                         <label>Length</label>
-                                                        <input type="text" name="lth" ng-model="lth"  md-maxlength="5" 
-                                                            class="form-control" placeholder="{{m.lth}}"  
-                                                            required>
+                                                        <input type="text" name="lth" ng-model="lth"  class="form-control" placeholder="{{m.lth}}" limit="5"  amount-limit>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-2">
@@ -327,7 +324,7 @@
                 </table>
             </div>
             <div class="modal-footer justify-content-between hidef">
-                <button type="button" class="btn btn-danger" ng-click="refreshthis()">Close</button>
+                <button type="button" class="btn btn-danger" ng-click="refreshthis();">Close</button>
                 <button type="button" class="btn btn-primary" ng-click="printhis();">Print</button>
             </div>
         </div>

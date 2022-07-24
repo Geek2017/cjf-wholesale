@@ -343,18 +343,18 @@ angular.module('cjfw').controller('storageCtrl', function ($scope, $timeout) {
         var lastChar = str[str.length - 1];
         return (lastChar === '.') ? str.substring(0, str.length - 1) : str;
     };
-}).directive("forceMaxlength", [function() {
+}).directive('amountLimit', function() {
     return {
-      restrict: "A",
-      link: function(scope, elem, attrs) {
-        var limit = parseInt(attrs.mdMaxlength);
-        angular.element(elem).on("keydown", function() {
-          if (this.value.length >= limit) {
-            this.value = this.value.substr(0,limit-1);
-            return false;
+      restrict: 'A',
+      require: '?ngModel',
+      link: function(scope, element, attrs, ctrl)
+      {
+        var limit = parseInt(attrs.limit);
+        element.bind('keypress', function(event) {
+          if(element[0].value.length >= limit) {
+            event.preventDefault();
           }
         });
       }
     }
-  }]);
- 
+  }); 

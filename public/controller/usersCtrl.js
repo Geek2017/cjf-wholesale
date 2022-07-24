@@ -1,4 +1,4 @@
-angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
+angular.module('cjfw').controller('usersCtrl', function ($scope, $timeout) {
 
     var Toast = Swal.mixin({
         toast: true,
@@ -7,9 +7,9 @@ angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
         timer: 3000
     });
 
-    firebase.database().ref('/users/').orderByChild('date').on("value", function(snapshot) {
-        $timeout(function() {
-            $scope.$apply(function() {
+    firebase.database().ref('/users/').orderByChild('date').on("value", function (snapshot) {
+        $timeout(function () {
+            $scope.$apply(function () {
 
                 let returnArr = [];
 
@@ -34,11 +34,11 @@ angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
         })
     });
 
-    $scope.adduser = function() {
+    $scope.adduser = function () {
 
         $('#adduser').modal('toggle');
 
-        $scope.saveuser = function() {
+        $scope.saveuser = function () {
 
             console.log($scope.password, $scope.email)
 
@@ -97,55 +97,72 @@ angular.module('cjfw').controller('usersCtrl', function($scope, $timeout) {
 
     }
 
-    $scope.delete = function(user) {
+    $scope.delete = function (user) {
         console.log(user)
         var adaRef = firebase.database().ref('users/' + user.key);
         adaRef.remove()
-            .then(function() {
+            .then(function () {
                 console.log("Remove succeeded.")
                 Toast.fire({
                     icon: 'success',
                     title: 'User Deleted'
                 })
             })
-            .catch(function(error) {
+            .catch(function (error) {
                 console.log("Remove failed: " + error.message)
             });
     }
 
-    $scope.reset = function(user) {
+    $scope.reset = function (user) {
         console.log(user)
 
-        let r = (Math.random() + 1).toString(36).substring(7);
-        console.log("random", r);
+        $('#changepass').modal('toggle');
 
-        $(document).Toasts('create', {
-            class: 'bg-info',
-            title: 'NEW PASSWORD',
-            body: 'Password is reset to: ' + '<b class="text-red">' + r + '</b>'
-        })
-
-        var storage = {
-            timestamp: user.timestamp,
-            fullname: user.fullname,
-            email: user.email,
-            password: r,
-            role: user.role
+        $scope.showpass = function () {
+            var passInput = $(".pass");
+            if (passInput.attr('type') === 'password') {
+                passInput.attr('type', 'text');
+            } else {
+                passInput.attr('type', 'password');
+            }
         }
 
-        var updates = {};
-        updates['/users/' + user.key] = storage;
-        firebase.database().ref().update(updates);
+        $scope.changeit = function () {
+            var storage = {
+                timestamp: user.timestamp,
+                fullname: user.fullname,
+                email: user.email,
+                password: $scope.changepass,
+                role: user.role
+            }
+
+            var updates = {};
+            updates['/users/' + user.key] = storage;
+            firebase.database().ref().update(updates);
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Password Change'
+            })
+
+            if(updates){
+                setTimeout(() => {
+                    $('#changepass').modal('toggle');
+                    window.location.reload();
+                }, 2000);
+            }
+        }
+
     }
 
-    $scope.edit = function(user) {
+    $scope.edit = function (user) {
         $('#edituser').modal('toggle');
         console.log(user)
         $scope.efullname = user.fullname
         $scope.eemail = user.email
         $scope.erole = user.role
 
-        $scope.update = function() {
+        $scope.update = function () {
             var storage = {
                 timestamp: user.timestamp,
                 fullname: $scope.efullname,
