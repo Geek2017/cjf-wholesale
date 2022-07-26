@@ -75,9 +75,12 @@
                                     <div class="col-12">
                                         <label for="">
                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                                            <input type="text" class="form-control datetimepicker-input" ng-model="search" data-target="#reservationdate">
-                                            <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
-                                                <div class="input-group-text"> <i class="fas fa-search fa-fw"></i></div>
+                                            <input type="text" class="form-control datetimepicker-input" ng-model="search">
+                                            <div class="input-group-append">
+                                                <div class="input-group-text search"> <i class="fas fa-search fa-fw"></i></div>
+                                                <div class="input-group-text clear"> 
+                                                    <button type="button" class="btn btn-danger btn-xs" ng-click="clearit()"><i class="fa fa-times-circle" aria-hidden="true"></i></button>
+                                                </div>
                                             </div>
                                         </div>
                                     </label>

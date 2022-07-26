@@ -8,6 +8,26 @@ angular.module('cjfw').controller('billsofladingCtrl', function($scope, $timeout
         timer: 4000
     });
 
+    let kid=localStorage.getItem('bolkid');
+    
+    $('.clear').hide();
+
+    if(kid){
+        $scope.search=kid;
+        $('.search').hide();
+        $('.clear').show();
+
+    }
+
+   
+
+    $scope.clearit=function(){
+        $scope.search='';
+        localStorage.setItem('bolkid','')
+        $('.search').show();
+        $('.clear').hide();
+    }
+
     let dfrom;
     let duntil;
 

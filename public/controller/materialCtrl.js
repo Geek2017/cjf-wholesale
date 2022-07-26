@@ -190,31 +190,37 @@ angular.module('cjfw').controller('materialCtrl', function($scope, $timeout) {
 
     $scope.getpdata = function(tag) {
 
-        pdfurl=tag.bolurl;
+        console.log(tag.keyid);
 
-        $('#modal-xl').modal('toggle');
-        $scope.date = tag.date;
-        $scope.billofland=tag.billofland;
-        $scope.vendor=tag.vendor;
+        localStorage.setItem('bolkid',tag.keyid);
 
-        console.log(tag)
+        window.location.href='#/billsoflading'
 
-        $scope.viewpdf = function() {
+        // pdfurl=tag.bolurl;
+
+        // $('#modal-xl').modal('toggle');
+        // $scope.date = tag.date;
+        // $scope.billofland=tag.billofland;
+        // $scope.vendor=tag.vendor;
+
+        // console.log(tag)
+
+        // $scope.viewpdf = function() {
         
-            console.log(pdfurl)
+        //     console.log(pdfurl)
      
-             if (tag.bolurl) {
-                 var win = window.open(pdfurl, '_blank');
-                 if (win) {
-                     win.focus();
-                 }
-             } else {
-                 Toast.fire({
-                     icon: 'error',
-                     title: 'NO PDF UPLOADED'
-                 })
-             }
-         }
+        //      if (tag.bolurl) {
+        //          var win = window.open(pdfurl, '_blank');
+        //          if (win) {
+        //              win.focus();
+        //          }
+        //      } else {
+        //          Toast.fire({
+        //              icon: 'error',
+        //              title: 'NO PDF UPLOADED'
+        //          })
+        //      }
+        //  }
     }
 
     var dtag;
